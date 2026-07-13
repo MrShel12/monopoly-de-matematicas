@@ -100,7 +100,7 @@ function Game() {
 			currentbidder -= pcount;
 		}
 
-		popup("<div style='font-weight: bold; font-size: 16px; margin-bottom: 10px;'>Auction <span id='propertyname'></span></div><div>Highest Bid = $<span id='highestbid'></span> (<span id='highestbidder'></span>)</div><div><span id='currentbidder'></span>, it is your turn to bid.</div<div><input id='bid' title='Enter an amount to bid on " + s.name + ".' style='width: 291px;' /></div><div><input type='button' value='Bid' onclick='game.auctionBid();' title='Place your bid.' /><input type='button' value='Pass' title='Skip bidding this time.' onclick='game.auctionPass();' /><input type='button' value='Exit Auction' title='Stop bidding on " + s.name + " altogether.' onclick='if (confirm(\"Are you sure you want to stop bidding on this property altogether?\")) game.auctionExit();' /></div>", "blank");
+			popup("<div style='font-weight: bold; font-size: 16px; margin-bottom: 10px;'>Subasta: <span id='propertyname'></span></div><div>Oferta más alta = $<span id='highestbid'></span> (<span id='highestbidder'></span>)</div><div><span id='currentbidder'></span>, es tu turno de ofertar.</div><div><input id='bid' title='Ingresa una cantidad para ofertar por " + s.name + ".' style='width: 291px;' /></div><div><input type='button' value='Ofertar' onclick='game.auctionBid();' title='Realiza tu oferta.' /><input type='button' value='Pasar' title='No ofertes esta vez.' onclick='game.auctionPass();' /><input type='button' value='Salir de la subasta' title='Deja de ofertar por " + s.name + ".' onclick='if (confirm(\"¿Seguro que quieres dejar de ofertar por esta propiedad?\")) game.auctionExit();' /></div>", "blank");
 
 		document.getElementById("propertyname").innerHTML = "<a href='javascript:void(0);' onmouseover='showdeed(" + auctionproperty + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>";
 		document.getElementById("highestbid").innerHTML = "0";
@@ -215,12 +215,12 @@ function Game() {
 			document.getElementById("bid").value = "Please enter a bid.";
 			document.getElementById("bid").style.color = "red";
 		} else if (isNaN(bid)) {
-			document.getElementById("bid").value = "Your bid must be a number.";
+			document.getElementById("bid").value = "La oferta debe ser un número.";
 			document.getElementById("bid").style.color = "red";
 		} else {
 
 			if (bid > player[currentbidder].money) {
-				document.getElementById("bid").value = "You don't have enough money to bid $" + bid + ".";
+				document.getElementById("bid").value = "No tienes suficiente dinero para ofertar $" + bid + ".";
 				document.getElementById("bid").style.color = "red";
 			} else if (bid > highestbid) {
 				highestbid = bid;
@@ -234,7 +234,7 @@ function Game() {
 					this.auctionPass();
 				}
 			} else {
-				document.getElementById("bid").value = "Your bid must be greater than highest bid. ($" + highestbid + ")";
+			document.getElementById("bid").value = "La oferta debe ser mayor que la oferta más alta ($" + highestbid + ").";
 				document.getElementById("bid").style.color = "red";
 			}
 		}
@@ -308,7 +308,7 @@ function Game() {
 		var amount = this.value;
 
 		if (isNaN(amount)) {
-			this.value = "This value must be a number.";
+			this.value = "Este valor debe ser un número.";
 			this.style.color = "red";
 			return false;
 		}
@@ -317,7 +317,7 @@ function Game() {
 		this.value = amount;
 
 		if (amount < 0) {
-			this.value = "This value must be greater than 0.";
+			this.value = "Este valor debe ser mayor que 0.";
 			this.style.color = "red";
 			return false;
 		}
@@ -744,13 +744,13 @@ function Game() {
 
 	this.acceptTrade = function(tradeObj) {
 		if (isNaN(document.getElementById("trade-leftp-money").value)) {
-			document.getElementById("trade-leftp-money").value = "This value must be a number.";
+			document.getElementById("trade-leftp-money").value = "Este valor debe ser un número.";
 			document.getElementById("trade-leftp-money").style.color = "red";
 			return false;
 		}
 
 		if (isNaN(document.getElementById("trade-rightp-money").value)) {
-			document.getElementById("trade-rightp-money").value = "This value must be a number.";
+			document.getElementById("trade-rightp-money").value = "Este valor debe ser un número.";
 			document.getElementById("trade-rightp-money").style.color = "red";
 			return false;
 		}
@@ -864,13 +864,13 @@ function Game() {
 
 	this.proposeTrade = function() {
 		if (isNaN(document.getElementById("trade-leftp-money").value)) {
-			document.getElementById("trade-leftp-money").value = "This value must be a number.";
+			document.getElementById("trade-leftp-money").value = "Este valor debe ser un número.";
 			document.getElementById("trade-leftp-money").style.color = "red";
 			return false;
 		}
 
 		if (isNaN(document.getElementById("trade-rightp-money").value)) {
-			document.getElementById("trade-rightp-money").value = "This value must be a number.";
+			document.getElementById("trade-rightp-money").value = "Este valor debe ser un número.";
 			document.getElementById("trade-rightp-money").style.color = "red";
 			return false;
 		}
@@ -1106,6 +1106,131 @@ function Game() {
 
 var game;
 
+// Banco de retos: respuesta abierta con palabras clave y justificación mínima.
+// Cada categoría cumple la cantidad solicitada para la actividad integradora.
+var algebraChallenges = [
+	{type:"conceptual", concept:"Operación binaria", prompt:"¿Qué es una operación binaria sobre un conjunto A?", keys:["funcion", "dos", "element", "conjunto", "cerradura"], answer:"Es una función A × A → A; por eso toma dos elementos de A y devuelve un elemento de A."},
+	{type:"conceptual", concept:"Grupo", prompt:"¿Qué condiciones debe cumplir una estructura para ser un grupo?", keys:["cerradura", "asociativ", "neutro", "invers"], answer:"Cerradura, asociatividad, elemento neutro e inverso para cada elemento."},
+	{type:"conceptual", concept:"Grupo abeliano", prompt:"¿Qué propiedad adicional tiene un grupo abeliano?", keys:["conmut", "ab"], answer:"La operación es conmutativa: a*b = b*a."},
+	{type:"conceptual", concept:"Anillo", prompt:"Define un anillo de forma breve indicando sus dos operaciones.", keys:["suma", "producto", "grupo", "distribut"], answer:"Tiene suma que forma un grupo abeliano, producto asociativo y leyes distributivas."},
+	{type:"conceptual", concept:"Campo", prompt:"¿Qué distingue a un campo de un anillo conmutativo?", keys:["invers", "no cero", "multiplic"], answer:"Todo elemento no nulo debe tener inverso multiplicativo."},
+	{type:"identification", concept:"(ℤ,+)", prompt:"Determina si (ℤ,+) es un grupo y justifica con sus axiomas.", keys:["grupo", "cerradura", "0", "invers"], answer:"Sí: es cerrado y asociativo; 0 es neutro y −a es inverso de a."},
+	{type:"identification", concept:"(ℕ,+)", prompt:"¿(ℕ,+) es un grupo? Justifica tu respuesta.", keys:["no", "invers", "negativ"], answer:"No; los naturales positivos no tienen inverso aditivo dentro de ℕ."},
+	{type:"identification", concept:"ℤ₅", prompt:"¿(ℤ₅,+ módulo 5) es un grupo abeliano? Justifica.", keys:["si", "grupo", "conmut", "mod"], answer:"Sí. La suma módulo 5 es cerrada, asociativa, conmutativa, tiene 0 e inversos."},
+	{type:"identification", concept:"ℤ₆", prompt:"¿ℤ₆ tiene divisores de cero? Da una justificación.", keys:["si", "2", "3", "0"], answer:"Sí: 2·3 = 6 ≡ 0 (mod 6), y 2 y 3 no son cero."},
+	{type:"identification", concept:"S₃", prompt:"¿S₃ con composición es abeliano? Justifica.", keys:["no", "conmut", "permut"], answer:"No; existen permutaciones cuya composición cambia según el orden."},
+	{type:"classification", concept:"ℚ", prompt:"Clasifica (ℚ,+,·): ¿grupo, anillo o campo? Justifica.", keys:["campo", "invers", "no cero"], answer:"Es un campo: los racionales no nulos tienen inverso multiplicativo."},
+	{type:"classification", concept:"ℤ", prompt:"Clasifica (ℤ,+,·): ¿anillo o campo? Justifica.", keys:["anillo", "no", "campo", "invers"], answer:"ℤ es anillo, no campo: por ejemplo 2 no tiene inverso multiplicativo entero."},
+	{type:"classification", concept:"ℤ₅", prompt:"Clasifica ℤ₅ con suma y producto módulo 5.", keys:["campo", "5", "primo", "invers"], answer:"Es un campo porque 5 es primo y cada clase no nula tiene inverso."},
+	{type:"classification", concept:"ℤ₆", prompt:"Clasifica ℤ₆ con suma y producto módulo 6.", keys:["anillo", "no", "campo", "divisor"], answer:"Es un anillo, pero no campo, pues tiene divisores de cero (2·3 ≡ 0)."},
+	{type:"classification", concept:"𝔽₇", prompt:"Clasifica 𝔽₇ = ℤ₇ y justifica.", keys:["campo", "7", "primo", "invers"], answer:"Es un campo finito porque 7 es primo y los no nulos son invertibles."},
+	{type:"proof", concept:"Demostración de grupo", prompt:"Demuestra brevemente que (ℤ,+) es grupo usando la definición.", keys:["cerradura", "asociativ", "0", "invers"], answer:"Para enteros, a+b es entero; la suma es asociativa; 0 es neutro y −a es el inverso de a."},
+	{type:"proof", concept:"Demostración de campo", prompt:"Justifica por qué ℤ₅ es un campo.", keys:["primo", "invers", "no cero", "mod"], answer:"Como 5 es primo, todo residuo no nulo módulo 5 posee inverso multiplicativo."},
+	{type:"proof", concept:"Demostración de anillo", prompt:"Justifica por qué (ℤ,+,·) es un anillo.", keys:["grupo", "abel", "suma", "distribut"], answer:"La suma en ℤ forma grupo abeliano; el producto es asociativo y distribuye sobre la suma."},
+	{type:"counterexample", concept:"Grupos no abelianos", prompt:"Refuta: «Todos los grupos son abelianos». Da un contraejemplo y explica.", keys:["s3", "no", "conmut", "permut"], answer:"S₃ es un contraejemplo: la composición de algunas permutaciones no conmuta."},
+	{type:"counterexample", concept:"Anillos y campos", prompt:"Refuta: «Todo anillo es un campo». Da un contraejemplo y explica.", keys:["z", "no", "invers", "2"], answer:"ℤ es un anillo pero no campo: 2 no tiene inverso multiplicativo en ℤ."},
+	{type:"counterexample", concept:"Cerradura", prompt:"Refuta: «(ℕ, resta) es cerrado». Da un ejemplo.", keys:["1", "2", "-1", "no"], answer:"1−2 = −1, y −1 no pertenece a ℕ; por tanto no hay cerradura."}
+	,{type:"closure", concept:"Cerradura", prompt:"¿La resta es una operación binaria en ℕ? Justifica usando un ejemplo.", keys:["no", "1", "2", "-1", "cerradura"], answer:"No: 1−2 = −1 y −1 no pertenece a ℕ, así que falla la cerradura."}
+];
+
+var algebraState = { active: null, counters: {} };
+
+function algebraNormalize(value) {
+	return (value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9+\-]/g, " ");
+}
+
+function getAlgebraChallenge(type, position) {
+	var candidates = [];
+	for (var i = 0; i < algebraChallenges.length; i++) if (!type || algebraChallenges[i].type === type) candidates.push(algebraChallenges[i]);
+	var key = (type || "all") + (position === undefined ? "" : position);
+	algebraState.counters[key] = (algebraState.counters[key] || 0) + 1;
+	return candidates[(algebraState.counters[key] - 1) % candidates.length];
+}
+
+function algebraChallengeTypeForSquare(position) {
+	var types = ["conceptual", "identification", "classification", "proof", "counterexample"];
+	return types[position % types.length];
+}
+
+function startPropertyAlgebraChallenge(position) {
+	if (algebraState.active || !player[turn] || square[position].owner !== 0) return;
+	startAlgebraChallenge(algebraChallengeTypeForSquare(position), "property", position);
+}
+
+function startSpecialAlgebraChallenge(type) {
+	if (!algebraState.active) startAlgebraChallenge(type, "card");
+}
+
+function startAlgebraChallenge(type, purpose, position) {
+	var p = player[turn];
+	var challenge = getAlgebraChallenge(type, position);
+	algebraState.active = { challenge: challenge, purpose: purpose, position: position, playerIndex: turn };
+	if (!p.human) { completeAlgebraChallenge(challenge.answer); return; }
+	var propertyText = position !== undefined ? "<p class='algebra-context'>Propiedad: <strong>" + square[position].name + "</strong>. Resuélvelo correctamente para desbloquear su compra.</p>" : "";
+	popup("<div class='algebra-card algebra-" + challenge.type + "'><div class='algebra-badge'>" + challenge.type + "</div><h3>Reto: " + challenge.concept + "</h3>" + propertyText + "<p>" + challenge.prompt + "</p><label for='algebra-answer'>Escribe tu justificación:</label><textarea id='algebra-answer' rows='5' placeholder='Usa definiciones, propiedades o un ejemplo concreto.'></textarea><div><input type='button' id='algebra-submit' value='Evaluar respuesta' /></div></div>", null, "blank");
+	document.getElementById("popup").style.width = "540px";
+	$("#algebra-submit").on("click", function() { completeAlgebraChallenge($("#algebra-answer").val()); });
+	$("#algebra-answer").focus();
+}
+
+function completeAlgebraChallenge(answer) {
+	var active = algebraState.active;
+	if (!active) return;
+	var p = player[active.playerIndex];
+	var normalized = algebraNormalize(answer);
+	var hits = 0;
+	for (var i = 0; i < active.challenge.keys.length; i++) if (normalized.indexOf(algebraNormalize(active.challenge.keys[i])) !== -1) hits++;
+	var correct = hits >= Math.min(2, active.challenge.keys.length) && normalized.replace(/\s/g, "").length >= 12;
+	p.challengesCompleted++;
+	if (correct) {
+		p.algebraPoints += active.purpose === "property" ? 8 : 10;
+		p.correctAnswers++;
+		p.masteredConcepts[active.challenge.concept] = true;
+		if (active.challenge.type === "proof") p.proofsCompleted++;
+		if (active.purpose === "card") p.money += 75;
+		if (active.purpose === "property") square[active.position].purchaseApprovedTurn = active.playerIndex;
+		addAlert(p.name + " resolvió correctamente el reto de " + active.challenge.concept + ".");
+	} else {
+		p.algebraPoints = Math.max(0, p.algebraPoints - 3);
+		if (active.purpose === "card") p.pay(25, 0);
+		if (active.purpose === "property") square[active.position].purchaseFailedTurn = active.playerIndex;
+		addAlert(p.name + " no resolvió el reto de " + active.challenge.concept + ".");
+	}
+	p.learningEvidence.push({concept: active.challenge.concept, type: active.challenge.type, correct: correct, proof: active.challenge.type === "proof" && correct});
+	if (!p.human) {
+		algebraState.active = null;
+		updateAlgebraDashboard();
+		updateMoney();
+		if (correct && active.purpose === "property") buy();
+		return;
+	}
+	var next = function() {
+		$("#popupwrap").hide(); $("#popupbackground").hide();
+		var completed = algebraState.active; algebraState.active = null;
+		updateAlgebraDashboard(); updateMoney();
+		if (correct && completed.purpose === "property") renderPropertyPurchasePrompt(completed.position);
+	};
+	document.getElementById("popuptext").innerHTML = "<div class='algebra-feedback " + (correct ? "correct" : "incorrect") + "'><h3>" + (correct ? "¡Respuesta correcta!" : "Aún no es suficiente") + "</h3><p>" + (correct ? "Obtienes puntos algebraicos" + (active.purpose === "card" ? " y 75 UA." : "; la compra queda desbloqueada.") : "Revisa la justificación esperada antes de continuar.") + "</p><p><strong>Respuesta guía:</strong> " + active.challenge.answer + "</p><input type='button' id='algebra-continue' value='Continuar' /></div>";
+	$("#algebra-continue").on("click", next).focus();
+}
+
+function renderPropertyPurchasePrompt(position) {
+	var s = square[position], p = player[turn];
+	$("#landed").show().html("<div>Reto superado: puedes adquirir <strong>" + s.name + "</strong>.<input type='button' onclick='buy();' value='Comprar (" + s.price + " UA)' /></div>");
+}
+
+function updateAlgebraDashboard() {
+	if (!player[turn]) return;
+	var p = player[turn];
+	$("#algebra-player-summary").html("<strong>" + p.name + "</strong><br />Puntos algebraicos: <b>" + p.algebraPoints + "</b><br />Retos: " + p.challengesCompleted + " · Correctos: " + p.correctAnswers);
+	var evidence = "";
+	for (var i = 1; i <= pcount; i++) {
+		var current = player[i];
+		evidence += "<div class='evidence-player'><strong>" + current.name + "</strong>: " + current.correctAnswers + "/" + current.challengesCompleted + " correctos · " + current.algebraPoints + " pts · " + current.proofsCompleted + " demostraciones</div>";
+	}
+	$("#learning-evidence").html(evidence || "Inicia una partida para registrar los retos.");
+}
+
 
 function Player(name, color) {
 	this.name = name;
@@ -1119,6 +1244,12 @@ function Player(name, color) {
 	this.chanceJailCard = false;
 	this.bidding = true;
 	this.human = true;
+	this.algebraPoints = 0;
+	this.challengesCompleted = 0;
+	this.correctAnswers = 0;
+	this.proofsCompleted = 0;
+	this.masteredConcepts = {};
+	this.learningEvidence = [];
 	// this.AI = null;
 
 	this.pay = function (amount, creditor) {
@@ -1196,6 +1327,78 @@ Array.prototype.randomize = function(length) {
 	}
 };
 
+// Traducción centralizada de los textos heredados de la interfaz original.
+function translateVisibleText(text) {
+	if (typeof text !== "string") return text;
+	var translations = {
+		"Start Game": "Iniciar partida", "View stats": "Ver estadísticas", "Buy": "Comprar", "Manage": "Administrar", "Trade": "Intercambiar",
+		"Buy house": "Comprar casa", "Sell house": "Vender casa", "Mortgage": "Hipotecar", "Roll Dice": "Tirar dados", "Roll again": "Tirar de nuevo", "End turn": "Terminar turno", "Resign": "Rendirse",
+		"Human": "Humano", "AI (Test)": "IA (prueba)", "Player name": "Nombre del jugador", "Player color": "Color del jugador", "Die": "Dado", "Close": "Cerrar",
+		"Select the number of players for the game.": "Selecciona el número de jugadores.", "Choose whether this player is controled by a human or by the computer.": "Elige si este jugador será controlado por una persona o por la computadora.", "Begin playing.": "Comenzar a jugar.",
+		"View alerts and buy the property you landed on.": "Consulta los avisos y compra la propiedad en la que caíste.", "View, mortgage, and improve your property. ": "Consulta, hipoteca y mejora tus propiedades.", "Exchange property with other players.": "Intercambia propiedades con otros jugadores.",
+		"Available buildings": "Construcciones disponibles", "Roll the dice and move your token accordingly.": "Tira los dados y mueve tu ficha según el resultado.", "If you cannot pay your debt then you must resign from the game.": "Si no puedes pagar tu deuda, debes rendirte.",
+		"Enter amount to exchange with the other player.": "Ingresa la cantidad para intercambiar con el otro jugador.", "Propose Trade": "Proponer intercambio", "Cancel Trade": "Cancelar intercambio", "Accept Trade": "Aceptar intercambio", "Reject Trade": "Rechazar intercambio",
+		"Exchange the money and properties that are checked above.": "Intercambia el dinero y las propiedades seleccionadas.", "Cancel the trade.": "Cancela el intercambio.", "Accept the proposed trade.": "Acepta el intercambio propuesto.", "Reject the proposed trade.": "Rechaza el intercambio propuesto.",
+		"Aqua": "Aguamarina", "Black": "Negro", "Blue": "Azul", "Fuchsia": "Fucsia", "Gray": "Gris", "Green": "Verde", "Lime": "Lima", "Maroon": "Granate", "Navy": "Azul marino", "Olive": "Oliva", "Orange": "Naranja", "Purple": "Morado", "Red": "Rojo", "Silver": "Plateado", "Teal": "Verde azulado", "Yellow": "Amarillo",
+		"Get Out of Jail Free Card": "Tarjeta para salir de prisión gratis", "Get Out of Jail Free": "Salir de prisión gratis", "House": "Casa", "Hotel": "Hotel", "Jail": "Prisión", "Mortgaged": "Hipotecada", "Unmortgage": "Levantar hipoteca", "the bank": "el banco",
+		"Check this box to include this Get Out of Jail Free Card in the trade.": "Marca esta casilla para incluir la tarjeta de salida de prisión en el intercambio."
+	};
+	for (var english in translations) {
+		if (translations.hasOwnProperty(english)) text = text.replace(new RegExp(english.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"), translations[english]);
+	}
+	return text
+		.replace(/Player (\d+)/g, "Jugador $1")
+		.replace(/ is bankrupt\. All of its assets will be turned over to /g, " está en bancarrota. Todos sus bienes pasarán a ")
+		.replace(/ is bankrupt\./g, " está en bancarrota.")
+		.replace(/ received /g, " recibió ")
+		.replace(/ from ([^.]+)\./g, " de $1.")
+		.replace(/ used a /g, " usó una ")
+		.replace(/ used a "Get Out of Jail Free" card\./g, " usó una tarjeta para salir de prisión gratis.")
+		.replace(/One or more properties must be selected in order to trade\./g, "Debes seleccionar una o más propiedades para intercambiar.")
+		.replace(/ has proposed a trade with you, /g, " te ha propuesto un intercambio, ")
+		.replace(/You may accept, reject, or modify the offer\./g, "Puedes aceptar, rechazar o modificar la oferta.")
+		.replace(/Are you sure you want to resign\?/g, "¿Seguro que quieres rendirte?")
+		.replace(/You need \$(\d+(?:\.\d+)?) more to /g, "Necesitas $ $1 más para ")
+		.replace(/All 32 houses are owned\. You must wait until one becomes available\./g, "Las 32 casas están ocupadas. Debes esperar a que haya una disponible.")
+		.replace(/All 12 hotels are owned\. You must wait until one becomes available\./g, "Los 12 hoteles están ocupados. Debes esperar a que haya uno disponible.")
+		.replace(/You landed on ([^.]+)\./g, "Caíste en $1.")
+		.replace(/ landed on ([^.]+)\./g, " cayó en $1.")
+		.replace(/ paid \$(\d+(?:\.\d+)?) rent to /g, " pagó $ $1 de renta a ")
+		.replace(/ collected \$(\d+(?:\.\d+)?) rent\./g, " cobró $ $1 de renta.")
+		.replace(/ collected a \$(\d+) salary for passing GO\./g, " cobró $ $1 por pasar por Inicio Algebraico.")
+		.replace(/ rolled (\d+) - doubles\./g, " obtuvo $1: dobles.")
+		.replace(/ rolled (\d+)\./g, " obtuvo $1.")
+		.replace(/It is ([^']+)'s turn\./g, "Es el turno de $1.");
+}
+
+function localizeInterface() {
+	function localizeElement(element) {
+		if (element.nodeType === 3) {
+			var translated = translateVisibleText(element.nodeValue);
+			if (translated !== element.nodeValue) element.nodeValue = translated;
+			return;
+		}
+		if (element.nodeType !== 1) return;
+		if (element.tagName === "SCRIPT" || element.tagName === "STYLE") return;
+		// Los colores se muestran traducidos, pero conservan su valor CSS original.
+		if (element.tagName === "OPTION" && !element.hasAttribute("value")) element.setAttribute("value", element.value);
+		var attributes = ["title", "value", "placeholder", "alt"];
+		for (var i = 0; i < attributes.length; i++) {
+			if (element.hasAttribute(attributes[i]) && !(element.tagName === "OPTION" && attributes[i] === "value")) {
+				var value = element.getAttribute(attributes[i]), localized = translateVisibleText(value);
+				if (localized !== value) { element.setAttribute(attributes[i], localized); if (attributes[i] === "value") element.value = localized; }
+			}
+		}
+		for (var child = element.firstChild; child; child = child.nextSibling) localizeElement(child);
+	}
+	localizeElement(document.body);
+	new MutationObserver(function(mutations) {
+		for (var i = 0; i < mutations.length; i++) {
+			for (var j = 0; j < mutations[i].addedNodes.length; j++) localizeElement(mutations[i].addedNodes[j]);
+		}
+	}).observe(document.body, {childList: true, subtree: true});
+}
+
 // function show(element) {
 	// // Element may be an HTML element or the id of one passed as a string.
 	// if (element.constructor == String) {
@@ -1219,6 +1422,7 @@ Array.prototype.randomize = function(length) {
 // }
 
 function addAlert(alertText) {
+	alertText = translateVisibleText(alertText);
 	$alert = $("#alert");
 
 	$(document.createElement("div")).text(alertText).appendTo($alert);
@@ -1232,6 +1436,7 @@ function addAlert(alertText) {
 }
 
 function popup(HTML, action, option) {
+	HTML = translateVisibleText(HTML);
 	document.getElementById("popuptext").innerHTML = HTML;
 	document.getElementById("popup").style.width = "300px";
 	document.getElementById("popup").style.top = "0px";
@@ -1249,7 +1454,7 @@ function popup(HTML, action, option) {
 
 	// Yes/No
 	if (option === "yes/no") {
-		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Yes\" id=\"popupyes\" /><input type=\"button\" value=\"No\" id=\"popupno\" /></div>";
+		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Sí\" id=\"popupyes\" /><input type=\"button\" value=\"No\" id=\"popupno\" /></div>";
 
 		$("#popupyes, #popupno").on("click", function() {
 			$("#popupwrap").hide();
@@ -1260,7 +1465,7 @@ function popup(HTML, action, option) {
 
 	// Ok
 	} else if (option !== "blank") {
-		$("#popuptext").append("<div><input type='button' value='OK' id='popupclose' /></div>");
+		$("#popuptext").append("<div><input type='button' value='Aceptar' id='popupclose' /></div>");
 		$("#popupclose").focus();
 
 		$("#popupclose").on("click", function() {
@@ -1467,13 +1672,13 @@ function updateOwned() {
 
 			mortgagetext = "";
 			if (sq.mortgage) {
-				mortgagetext = "title='Mortgaged' style='color: grey;'";
+				mortgagetext = "title='Hipotecada' style='color: grey;'";
 			}
 
 			housetext = "";
 			if (sq.house >= 1 && sq.house <= 4) {
 				for (var x = 1; x <= sq.house; x++) {
-					housetext += "<img src='images/house.png' alt='' title='House' class='house' />";
+					housetext += "<img src='images/house.png' alt='' title='Casa' class='house' />";
 				}
 			} else if (sq.hotel) {
 				housetext += "<img src='images/hotel.png' alt='' title='Hotel' class='hotel' />";
@@ -1499,7 +1704,7 @@ function updateOwned() {
 			firstproperty = 40;
 			HTML += "<table>";
 		}
-		HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox40' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Get Out of Jail Free Card</td></tr>";
+		HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox40' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Tarjeta para salir de prisión gratis</td></tr>";
 
 	}
 	if (p.chanceJailCard) {
@@ -1507,11 +1712,11 @@ function updateOwned() {
 			firstproperty = 41;
 			HTML += "<table>";
 		}
-		HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox41' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Get Out of Jail Free Card</td></tr>";
+		HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox41' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Tarjeta para salir de prisión gratis</td></tr>";
 	}
 
 	if (HTML === "") {
-		HTML = p.name + ", you don't have any properties.";
+		HTML = p.name + ", no tienes propiedades.";
 		$("#option").hide();
 	} else {
 		HTML += "</table>";
@@ -1585,15 +1790,15 @@ function updateOption() {
 	document.getElementById("mortgagebutton").disabled = false;
 
 	if (sq.mortgage) {
-		document.getElementById("mortgagebutton").value = "Unmortgage ($" + Math.round(sq.price * 0.55) + ")";
-		document.getElementById("mortgagebutton").title = "Unmortgage " + sq.name + " for $" + Math.round(sq.price * 0.55) + ".";
+		document.getElementById("mortgagebutton").value = "Levantar hipoteca ($" + Math.round(sq.price * 0.55) + ")";
+		document.getElementById("mortgagebutton").title = "Levantar la hipoteca de " + sq.name + " por $" + Math.round(sq.price * 0.55) + ".";
 		$("#buyhousebutton").hide();
 		$("#sellhousebutton").hide();
 
 		allGroupUnmortgaged = false;
 	} else {
-		document.getElementById("mortgagebutton").value = "Mortgage ($" + (sq.price * 0.5) + ")";
-		document.getElementById("mortgagebutton").title = "Mortgage " + sq.name + " for $" + (sq.price * 0.5) + ".";
+		document.getElementById("mortgagebutton").value = "Hipotecar ($" + (sq.price * 0.5) + ")";
+		document.getElementById("mortgagebutton").title = "Hipotecar " + sq.name + " por $" + (sq.price * 0.5) + ".";
 
 		if (sq.groupNumber >= 3) {
 			$("#buyhousebutton").show();
@@ -1601,19 +1806,19 @@ function updateOption() {
 			buyhousebutton.disabled = false;
 			sellhousebutton.disabled = false;
 
-			buyhousebutton.value = "Buy house ($" + sq.houseprice + ")";
-			sellhousebutton.value = "Sell house ($" + (sq.houseprice * 0.5) + ")";
-			buyhousebutton.title = "Buy a house for $" + sq.houseprice;
-			sellhousebutton.title = "Sell a house for $" + (sq.houseprice * 0.5);
+			buyhousebutton.value = "Comprar casa ($" + sq.houseprice + ")";
+			sellhousebutton.value = "Vender casa ($" + (sq.houseprice * 0.5) + ")";
+			buyhousebutton.title = "Comprar una casa por $" + sq.houseprice;
+			sellhousebutton.title = "Vender una casa por $" + (sq.houseprice * 0.5);
 
 			if (sq.house == 4) {
-				buyhousebutton.value = "Buy hotel ($" + sq.houseprice + ")";
-				buyhousebutton.title = "Buy a hotel for $" + sq.houseprice;
+				buyhousebutton.value = "Comprar hotel ($" + sq.houseprice + ")";
+				buyhousebutton.title = "Comprar un hotel por $" + sq.houseprice;
 			}
 			if (sq.hotel == 1) {
 				$("#buyhousebutton").hide();
-				sellhousebutton.value = "Sell hotel ($" + (sq.houseprice * 0.5) + ")";
-				sellhousebutton.title = "Sell a hotel for $" + (sq.houseprice * 0.5);
+				sellhousebutton.value = "Vender hotel ($" + (sq.houseprice * 0.5) + ")";
+				sellhousebutton.title = "Vender un hotel por $" + (sq.houseprice * 0.5);
 			}
 
 			var maxhouse = 0;
@@ -1789,7 +1994,7 @@ function addamount(amount, cause) {
 
 	p.money += amount;
 
-	addAlert(p.name + " received $" + amount + " from " + cause + ".");
+	addAlert(p.name + " recibió $" + amount + " de " + cause + ".");
 }
 
 function subtractamount(amount, cause) {
@@ -1797,19 +2002,19 @@ function subtractamount(amount, cause) {
 
 	p.pay(amount, 0);
 
-	addAlert(p.name + " lost $" + amount + " from " + cause + ".");
+	addAlert(p.name + " perdió $" + amount + " por " + cause + ".");
 }
 
 function gotojail() {
 	var p = player[turn];
-	addAlert(p.name + " was sent directly to jail.");
-	document.getElementById("landed").innerHTML = "You are in jail.";
+	addAlert(p.name + " fue enviado directamente a prisión.");
+	document.getElementById("landed").innerHTML = "Estás en prisión.";
 
 	p.jail = true;
 	doublecount = 0;
 
-	document.getElementById("nextbutton").value = "End turn";
-	document.getElementById("nextbutton").title = "End turn and advance to the next player.";
+	document.getElementById("nextbutton").value = "Terminar turno";
+	document.getElementById("nextbutton").title = "Termina el turno y pasa al siguiente jugador.";
 
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
@@ -2168,6 +2373,11 @@ function showStats() {
 function showdeed(property) {
 	var sq = square[property];
 	$("#deed").show();
+	if (sq.algebraInfo) {
+		$("#algebra-deed-info").show().html("<strong>" + sq.algebraCategory + ":</strong> " + sq.algebraInfo);
+	} else {
+		$("#algebra-deed-info").hide();
+	}
 
 	$("#deed-normal").hide();
 	$("#deed-mortgaged").hide();
@@ -2211,6 +2421,7 @@ function showdeed(property) {
 
 function hidedeed() {
 	$("#deed").hide();
+	$("#algebra-deed-info").hide();
 }
 
 function buy() {
@@ -2218,14 +2429,26 @@ function buy() {
 	var property = square[p.position];
 	var cost = property.price;
 
+	// En la edición algebraica una propiedad sólo se compra al justificar el reto.
+	if (property.purchaseApprovedTurn !== turn) {
+		if (property.purchaseFailedTurn === turn) {
+			popup("<p>No puedes comprar " + property.name + " este turno: el reto no fue resuelto. Revisa la respuesta guía y vuelve a intentarlo en una próxima visita.</p>");
+			return;
+		}
+		startPropertyAlgebraChallenge(p.position);
+		return;
+	}
+
 	if (p.money >= cost) {
 		p.pay(cost, 0);
 
 		property.owner = turn;
+		property.purchaseApprovedTurn = null;
 		updateMoney();
 		addAlert(p.name + " bought " + property.name + " for " + property.pricetext + ".");
 
 		updateOwned();
+		updateAlgebraDashboard();
 
 		$("#landed").hide();
 
@@ -2248,10 +2471,10 @@ function mortgage(index) {
 	sq.mortgage = true;
 	p.money += mortgagePrice;
 
-	document.getElementById("mortgagebutton").value = "Unmortgage for $" + unmortgagePrice;
-	document.getElementById("mortgagebutton").title = "Unmortgage " + sq.name + " for $" + unmortgagePrice + ".";
+	document.getElementById("mortgagebutton").value = "Levantar hipoteca por $" + unmortgagePrice;
+	document.getElementById("mortgagebutton").title = "Levantar la hipoteca de " + sq.name + " por $" + unmortgagePrice + ".";
 
-	addAlert(p.name + " mortgaged " + sq.name + " for $" + mortgagePrice + ".");
+	addAlert(p.name + " hipotecó " + sq.name + " por $" + mortgagePrice + ".");
 	updateOwned();
 	updateMoney();
 
@@ -2270,10 +2493,10 @@ function unmortgage(index) {
 
 	p.pay(unmortgagePrice, 0);
 	sq.mortgage = false;
-	document.getElementById("mortgagebutton").value = "Mortgage for $" + mortgagePrice;
-	document.getElementById("mortgagebutton").title = "Mortgage " + sq.name + " for $" + mortgagePrice + ".";
+	document.getElementById("mortgagebutton").value = "Hipotecar por $" + mortgagePrice;
+	document.getElementById("mortgagebutton").title = "Hipotecar " + sq.name + " por $" + mortgagePrice + ".";
 
-	addAlert(p.name + " unmortgaged " + sq.name + " for $" + unmortgagePrice + ".");
+	addAlert(p.name + " levantó la hipoteca de " + sq.name + " por $" + unmortgagePrice + ".");
 	updateOwned();
 	return true;
 }
@@ -2284,14 +2507,19 @@ function land(increasedRent) {
 
 	var p = player[turn];
 	var s = square[p.position];
+	// Los permisos de compra son válidos sólo durante esta visita a la propiedad.
+	if (s.price !== 0 && s.owner === 0) {
+		s.purchaseApprovedTurn = null;
+		s.purchaseFailedTurn = null;
+	}
 
 	var die1 = game.getDie(1);
 	var die2 = game.getDie(2);
 
 	$("#landed").show();
-	document.getElementById("landed").innerHTML = "You landed on " + s.name + ".";
+	document.getElementById("landed").innerHTML = "Caíste en " + s.name + ".";
 	s.landcount++;
-	addAlert(p.name + " landed on " + s.name + ".");
+	addAlert(p.name + " cayó en " + s.name + ".");
 
 	// Allow player to buy the property on which he landed.
 	if (s.price !== 0 && s.owner === 0) {
@@ -2302,7 +2530,7 @@ function land(increasedRent) {
 				buy();
 			}
 		} else {
-			document.getElementById("landed").innerHTML = "<div>You landed on <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>.<input type='button' onclick='buy();' value='Buy ($" + s.price + ")' title='Buy " + s.name + " for " + s.pricetext + ".'/></div>";
+			document.getElementById("landed").innerHTML = "<div>Caíste en <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>. Resuelve el reto para comprarla.<input type='button' onclick='buy();' value='Resolver reto' title='Resuelve el reto de " + s.name + ".'/></div>";
 		}
 
 
@@ -2369,13 +2597,13 @@ function land(increasedRent) {
 			}
 		}
 
-		addAlert(p.name + " paid $" + rent + " rent to " + player[s.owner].name + ".");
+		addAlert(p.name + " pagó $" + rent + " de renta a " + player[s.owner].name + ".");
 		p.pay(rent, s.owner);
 		player[s.owner].money += rent;
 
-		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
+		document.getElementById("landed").innerHTML = "Caíste en " + s.name + ". " + player[s.owner].name + " cobró $" + rent + " de renta.";
 	} else if (s.owner > 0 && s.owner != turn && s.mortgage) {
-		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
+		document.getElementById("landed").innerHTML = "Caíste en " + s.name + ". La propiedad está hipotecada; no se cobró renta.";
 	}
 
 	// City Tax
@@ -2389,7 +2617,7 @@ function land(increasedRent) {
 		updatePosition();
 
 		if (p.human) {
-			popup("<div>Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.</div>", gotojail);
+			popup("<div>Ve a prisión. Ve directamente a prisión. No pases por Inicio Algebraico ni cobres $200.</div>", gotojail);
 		} else {
 			gotojail();
 		}
@@ -2405,12 +2633,18 @@ function land(increasedRent) {
 	updateMoney();
 	updatePosition();
 	updateOwned();
+	updateAlgebraDashboard();
 
 	if (!p.human) {
 		popup(p.AI.alertList, chanceCommunityChest);
 		p.AI.alertList = "";
 	} else {
-		chanceCommunityChest();
+		// Las propiedades lanzan un reto antes de que pueda efectuarse su compra.
+		if (s.price !== 0 && s.owner === 0) {
+			startPropertyAlgebraChallenge(p.position);
+		} else {
+			chanceCommunityChest();
+		}
 	}
 }
 
@@ -2424,8 +2658,8 @@ function roll() {
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
 	}
-	document.getElementById("nextbutton").value = "End turn";
-	document.getElementById("nextbutton").title = "End turn and advance to the next player.";
+	document.getElementById("nextbutton").value = "Terminar turno";
+	document.getElementById("nextbutton").title = "Termina el turno y pasa al siguiente jugador.";
 
 	game.rollDice();
 	var die1 = game.getDie(1);
@@ -2434,28 +2668,28 @@ function roll() {
 	doublecount++;
 
 	if (die1 == die2) {
-		addAlert(p.name + " rolled " + (die1 + die2) + " - doubles.");
+		addAlert(p.name + " obtuvo " + (die1 + die2) + ": dobles.");
 	} else {
-		addAlert(p.name + " rolled " + (die1 + die2) + ".");
+		addAlert(p.name + " obtuvo " + (die1 + die2) + ".");
 	}
 
 	if (die1 == die2 && !p.jail) {
 		updateDice(die1, die2);
 
 		if (doublecount < 3) {
-			document.getElementById("nextbutton").value = "Roll again";
-			document.getElementById("nextbutton").title = "You threw doubles. Roll again.";
+			document.getElementById("nextbutton").value = "Tirar de nuevo";
+			document.getElementById("nextbutton").title = "Obtuviste dobles. Tira de nuevo.";
 
 		// If player rolls doubles three times in a row, send him to jail
 		} else if (doublecount === 3) {
 			p.jail = true;
 			doublecount = 0;
-			addAlert(p.name + " rolled doubles three times in a row.");
+			addAlert(p.name + " obtuvo dobles tres veces seguidas.");
 			updateMoney();
 
 
 			if (p.human) {
-				popup("You rolled doubles three times in a row. Go to jail.", gotojail);
+		popup("Obtuviste dobles tres veces seguidas. Ve a prisión.", gotojail);
 			} else {
 				gotojail();
 			}
@@ -2463,8 +2697,8 @@ function roll() {
 			return;
 		}
 	} else {
-		document.getElementById("nextbutton").value = "End turn";
-		document.getElementById("nextbutton").title = "End turn and advance to the next player.";
+		document.getElementById("nextbutton").value = "Terminar turno";
+		document.getElementById("nextbutton").title = "Termina el turno y pasa al siguiente jugador.";
 		doublecount = 0;
 	}
 
@@ -2486,14 +2720,14 @@ function roll() {
 			p.position = 10 + die1 + die2;
 			doublecount = 0;
 
-			addAlert(p.name + " rolled doubles to get out of jail.");
+			addAlert(p.name + " obtuvo dobles para salir de prisión.");
 
 			land();
 		} else {
 			if (p.jailroll === 3) {
 
 				if (p.human) {
-					popup("<p>You must pay the $50 fine.</p>", function() {
+				popup("<p>Debes pagar la multa de $50.</p>", function() {
 						payfifty();
 						player[turn].position=10 + die1 + die2;
 						land();
@@ -2505,7 +2739,7 @@ function roll() {
 				}
 			} else {
 				$("#landed").show();
-				document.getElementById("landed").innerHTML = "You are in jail.";
+				document.getElementById("landed").innerHTML = "Estás en prisión.";
 
 				if (!p.human) {
 					popup(p.AI.alertList, game.next);
@@ -2525,7 +2759,7 @@ function roll() {
 		if (p.position >= 40) {
 			p.position -= 40;
 			p.money += 200;
-			addAlert(p.name + " collected a $200 salary for passing GO.");
+			addAlert(p.name + " cobró $200 por pasar por Inicio Algebraico.");
 		}
 
 		land();
@@ -2547,7 +2781,7 @@ function play() {
 
 	document.getElementById("pname").innerHTML = p.name;
 
-	addAlert("It is " + p.name + "'s turn.");
+	addAlert("Es el turno de " + p.name + ".");
 
 	// Check for bankruptcy.
 	p.pay(0, p.creditor);
@@ -2559,29 +2793,29 @@ function play() {
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
 	}
-	document.getElementById("nextbutton").value = "Roll Dice";
-	document.getElementById("nextbutton").title = "Roll the dice and move your token accordingly.";
+	document.getElementById("nextbutton").value = "Tirar dados";
+	document.getElementById("nextbutton").title = "Tira los dados y mueve tu ficha según el resultado.";
 
 	$("#die0").hide();
 	$("#die1").hide();
 
 	if (p.jail) {
 		$("#landed").show();
-		document.getElementById("landed").innerHTML = "You are in jail.<input type='button' title='Pay $50 fine to get out of jail immediately.' value='Pay $50 fine' onclick='payfifty();' />";
+		document.getElementById("landed").innerHTML = "Estás en prisión.<input type='button' title='Paga una multa de $50 para salir de prisión inmediatamente.' value='Pagar multa de $50' onclick='payfifty();' />";
 
 		if (p.communityChestJailCard || p.chanceJailCard) {
-			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Use &quot;Get Out of Jail Free&quot; card.' onclick='useJailCard();' value='Use Card' />";
+			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Usa la tarjeta para salir de prisión gratis.' onclick='useJailCard();' value='Usar tarjeta' />";
 		}
 
-		document.getElementById("nextbutton").title = "Roll the dice. If you throw doubles, you will get out of jail.";
+		document.getElementById("nextbutton").title = "Tira los dados. Si obtienes dobles, saldrás de prisión.";
 
 		if (p.jailroll === 0)
-			addAlert("This is " + p.name + "'s first turn in jail.");
+			addAlert("Este es el primer turno de " + p.name + " en prisión.");
 		else if (p.jailroll === 1)
-			addAlert("This is " + p.name + "'s second turn in jail.");
+			addAlert("Este es el segundo turno de " + p.name + " en prisión.");
 		else if (p.jailroll === 2) {
-			document.getElementById("landed").innerHTML += "<div>NOTE: If you do not throw doubles after this roll, you <i>must</i> pay the $50 fine.</div>";
-			addAlert("This is " + p.name + "'s third turn in jail.");
+			document.getElementById("landed").innerHTML += "<div>NOTA: si no obtienes dobles después de este tiro, <i>debes</i> pagar la multa de $50.</div>";
+			addAlert("Este es el tercer turno de " + p.name + " en prisión.");
 		}
 
 		if (!p.human && p.AI.postBail()) {
@@ -2596,6 +2830,7 @@ function play() {
 	updateMoney();
 	updatePosition();
 	updateOwned();
+	updateAlgebraDashboard();
 
 	$(".money-bar-arrow").hide();
 	$("#p" + turn + "arrow").show();
@@ -2761,6 +2996,7 @@ window.onload = function() {
 	$("#nextbutton").click(game.next);
 	$("#noscript").hide();
 	$("#setup, #noF5").show();
+	localizeInterface();
 
 	var enlargeWrap = document.body.appendChild(document.createElement("div"));
 
@@ -2822,13 +3058,13 @@ window.onload = function() {
 
 	// Jail corrections
 	$("<div>", {id: "jailpositionholder" }).appendTo("#jail");
-	$("<span>").text("Jail").appendTo("#jail");
+	$("<span>").text("Prisión").appendTo("#jail");
 
 	document.getElementById("jail").enlargeId = "enlarge40";
 
 	document.getElementById("enlarge-wrap").innerHTML += "<div id='enlarge40' class='enlarge'><div id='enlarge40color' class='enlarge-color'></div><br /><div id='enlarge40name' class='enlarge-name'>Jail</div><br /><div id='enlarge40price' class='enlarge-price'><img src='images/jake_icon.png' height='80' width='80' alt='' style='position: relative; top: -20px;' /></div><br /><div id='enlarge40token' class='enlarge-token'></div></div>";
 
-	document.getElementById("enlarge40name").innerHTML = "Jail";
+	document.getElementById("enlarge40name").innerHTML = "Prisión";
 
 	// Create event handlers for hovering and draging.
 

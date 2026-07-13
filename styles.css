@@ -823,3 +823,47 @@ td {
 	width: 15px;
 
 }
+
+/* Componentes didácticos de la edición de Álgebra Abstracta. */
+#algebra-learning {
+	clear: both;
+	max-width: 910px;
+	margin: 18px auto;
+	border: 2px solid #243b55;
+	background: #f7fbff;
+	box-shadow: 2px 3px 0 rgba(36, 59, 85, 0.2);
+	font-size: 13px;
+}
+
+.algebra-panel-header {
+	padding: 8px 12px;
+	background: #243b55;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.algebra-panel-header span { color: #f6c945; font-size: 22px; vertical-align: middle; }
+.algebra-player-summary { padding: 9px 12px; background: #e5f2ff; line-height: 1.45; }
+#algebra-learning details { border-top: 1px solid #cbd9e6; padding: 7px 12px; }
+#algebra-learning summary { cursor: pointer; color: #243b55; font-weight: bold; }
+#algebra-learning p { margin: 7px 0 2px; line-height: 1.4; }
+.evidence-player { padding: 3px 0; border-bottom: 1px dotted #b8c7d5; }
+
+.algebra-card { color: #203040; line-height: 1.45; }
+.algebra-card h3 { margin: 5px 0 8px; color: #243b55; }
+.algebra-card textarea { box-sizing: border-box; width: 100%; margin: 5px 0 10px; padding: 7px; border: 1px solid #8194a8; font-family: Arial, sans-serif; }
+.algebra-badge { display: inline-block; padding: 3px 7px; border-radius: 3px; background: #2b6cb0; color: white; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+.algebra-proof .algebra-badge { background: #805ad5; }
+.algebra-counterexample .algebra-badge { background: #c05621; }
+.algebra-classification .algebra-badge { background: #2f855a; }
+.algebra-context { padding: 7px; background: #fff8db; border-left: 4px solid #f6c945; }
+.algebra-feedback { line-height: 1.5; }
+.algebra-feedback.correct h3 { color: #1e7b43; }
+.algebra-feedback.incorrect h3 { color: #b33a3a; }
+.algebra-deed-info { display: none; margin: 5px; padding: 5px; border: 1px solid #7f9db9; background: #f5fbff; color: #243b55; font-size: 11px; line-height: 1.3; }
+
+@media (max-width: 760px) {
+	#algebra-learning { margin: 12px 6px; }
+	#popup { max-width: calc(100vw - 24px); }
+}

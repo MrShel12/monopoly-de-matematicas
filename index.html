@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Monopoly</title>
+	<title>Monopoly matematicas</title>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -37,50 +37,51 @@
 	</div>
 
 	<p id="noscript">
-		Note: This page will not function without JavaScript.
+		Nota: esta página no funcionará sin JavaScript.
 	</p>
 
 	<div id="refresh">
-		Refresh this page to start a new game.
+		Actualiza esta página para iniciar una nueva partida.
 	</div>
 
 	<!-- <div id="enlarge"></div> -->
 
 	<div id="deed">
+		<div id="algebra-deed-info" class="algebra-deed-info"></div>
 		<div id="deed-normal" style="display: none;">
 			<div id="deed-header">
-				<div style="margin: 5px; font-size: 11px;">T I T L E&nbsp;&nbsp;D E E D</div>
+				<div style="margin: 5px; font-size: 11px;">T Í T U L O&nbsp;&nbsp;D E&nbsp;&nbsp;P R O P I E D A D</div>
 				<div id="deed-name"></div>
 			</div>
 			<table id="deed-table">
 				<tr>
 					<td colspan="2">
-						RENT&nbsp;$<span id="deed-baserent">12</span>.
+						RENTA&nbsp;$<span id="deed-baserent">12</span>.
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: left;">With 1 House</td>
+					<td style="text-align: left;">Con 1 casa</td>
 					<td style="text-align: right;">$&nbsp;&nbsp;&nbsp;<span id="deed-rent1">60</span>.</td>
 				</tr>
 				<tr>
-					<td style="text-align: left;">With 2 Houses</td>
+					<td style="text-align: left;">Con 2 casas</td>
 					<td style="text-align: right;"><span id="deed-rent2">180</span>.</td>
 				</tr>
 				<tr>
-					<td style="text-align: left;">With 3 Houses</td>
+					<td style="text-align: left;">Con 3 casas</td>
 					<td style="text-align: right;"><span id="deed-rent3">500</span>.</td>
 				</tr>
 				<tr>
-					<td style="text-align: left;">With 4 Houses</td>
+					<td style="text-align: left;">Con 4 casas</td>
 					<td style="text-align: right;"><span id="deed-rent4">700</span>.</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<div style="margin-bottom: 8px;">With HOTEL $<span id="deed-rent5">900</span>.</div>
-						<div>Mortgage Value $<span id="deed-mortgage">80</span>.</div>
-						<div>Houses cost $<span id="deed-houseprice">100</span>. each</div>
-						<div>Hotels, $<span id="deed-hotelprice">100</span>. plus 4 houses</div>
-						<div style="font-size: 9px; font-style: italic; margin-top: 5px;">If a player owns ALL the Lots of any Color-Group, the rent is Doubled on Unimproved Lots in that group.</div>
+						<div style="margin-bottom: 8px;">Con HOTEL $<span id="deed-rent5">900</span>.</div>
+						<div>Valor de hipoteca $<span id="deed-mortgage">80</span>.</div>
+						<div>Las casas cuestan $<span id="deed-houseprice">100</span> cada una</div>
+						<div>Hotel: $<span id="deed-hotelprice">100</span> más 4 casas</div>
+						<div style="font-size: 9px; font-style: italic; margin-top: 5px;">Si un jugador posee todas las propiedades de un grupo de color, la renta se duplica en las propiedades sin construcciones de ese grupo.</div>
 					</td>
 				</tr>
 			</table>
@@ -89,17 +90,17 @@
 		<div id="deed-mortgaged">
 			<div id="deed-mortgaged-name"></div>
 			<p>&bull;</p>
-			<div>MORTGAGED</div>
-			<div> for $<span id="deed-mortgaged-mortgage">80</span></div>
+			<div>HIPOTECADA</div>
+			<div> por $<span id="deed-mortgaged-mortgage">80</span></div>
 			<p>&bull;</p>
-			<div style="font-style: italic; font-size: 13px; margin: 10px;">Card must be turned this side up if property is mortgaged</div>
+			<div style="font-style: italic; font-size: 13px; margin: 10px;">La tarjeta debe mostrarse por este lado si la propiedad está hipotecada</div>
 		</div>
 
 		<div id="deed-special">
 			<div id="deed-special-name"></div>
 			<div id="deed-special-text"></div>
 			<div id="deed-special-footer">
-				Mortgage Value
+				Valor de hipoteca
 				<span style="float: right;">$<span id="deed-special-mortgage">100</span>.</span>
 			</div>
 		</div>
@@ -233,7 +234,7 @@
 				<tr id="moneybarrowbutton">
 					<td class="moneybararrowcell">&nbsp;</td>
 					<td style="border: none;">
-						<input type="button" id="viewstats" value="View stats" title="View a pop-up window that shows a list of each player's properties." />
+						<input type="button" id="viewstats" value="Ver estadísticas" title="Muestra una ventana con las propiedades de cada jugador." />
 					</td>
 				</tr>
 			</table>
@@ -528,6 +529,24 @@
 			</tr>
 		</table>
 	</div>
+
+	<section id="algebra-learning" aria-label="Apoyo de Álgebra Abstracta">
+		<div class="algebra-panel-header"><span>∑</span> Apoyo de Álgebra Abstracta</div>
+		<div id="algebra-player-summary" class="algebra-player-summary">Inicia una partida para ver tus puntos algebraicos.</div>
+		<details open="open">
+			<summary>Definiciones esenciales</summary>
+			<p><strong>Operación binaria:</strong> función A × A → A. <strong>Grupo:</strong> cerradura, asociatividad, neutro e inversos. <strong>Grupo abeliano:</strong> grupo con operación conmutativa.</p>
+			<p><strong>Anillo:</strong> suma de grupo abeliano, producto asociativo y distributividad. <strong>Campo:</strong> anillo conmutativo con 1 donde todo elemento no nulo tiene inverso multiplicativo.</p>
+		</details>
+		<details>
+			<summary>Ejemplos y contraejemplos</summary>
+			<p>(ℤ,+) es grupo abeliano. ℤ es anillo, pero no campo. ℤ₅ y ℚ son campos. S₃ es grupo no abeliano. ℤ₆ tiene divisores de cero porque 2·3 ≡ 0 mod 6.</p>
+		</details>
+		<details open="open">
+			<summary>Evidencias de aprendizaje</summary>
+			<div id="learning-evidence">Inicia una partida para registrar los retos.</div>
+		</details>
+	</section>
 
 	<div id="trade">
 		<table style="border-spacing: 3px;">
