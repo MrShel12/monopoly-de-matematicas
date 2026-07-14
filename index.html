@@ -10,6 +10,16 @@
 	<!-- <script type="text/javascript" src="newyorkcityedition.js"></script> -->
 	<script type="text/javascript" src="ai.js"></script>
 	<script type="text/javascript" src="monopoly.js"></script>
+
+	<!-- Firebase SDKs (compat) and QRCode library -->
+	<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+	<!-- Firebase config (fill with your project values) -->
+	<script type="text/javascript" src="firebase-config.js"></script>
+	<!-- Multiplayer glue forRealtime sync using Firebase -->
+	<script type="text/javascript" src="firebase-multiplayer.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 
@@ -465,6 +475,26 @@
 
 		<div style="margin: 20px 0px;">
 			<input type="button" value="Start Game" onclick="setup();" title="Begin playing." />
+		</div>
+
+		<!-- Multiplayer controls -->
+		<div id="multiplayer-controls" style="margin-top: 12px;">
+			<h3>Partida en línea</h3>
+			<div style="margin-bottom:8px;">
+				<input type="button" id="create-room" value="Crear partida" />
+			</div>
+			<div style="margin-bottom:8px;">
+				Código: <input type="text" id="join-code" placeholder="Código de sala" />
+				Nombre: <input type="text" id="join-name" placeholder="Tu nombre" />
+				<input type="button" id="join-room" value="Unirse a partida" />
+			</div>
+			<div id="lobby" style="display:none; border:1px solid #ccc; padding:8px;">
+				<div id="lobby-info"></div>
+				<div id="qrcode"></div>
+				<div id="lobby-players"></div>
+				<div style="margin-top:8px;"><input type="button" id="start-online-game" value="Iniciar partida (host)" style="display:none;" /></div>
+			</div>
+		</div>
 		</div>
 
 		<div id="noF5">Note: Refreshing this page or navigating away from it may end your game without warning.</div>
