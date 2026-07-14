@@ -1,869 +1,223 @@
-body {
-	background: #FFFFFF;
-	margin: 0px;
-	min-width: 1075px;
-}
-
-td {
-	font-size: 12px;
-	font-family: arial, sans-serif;
-	border: 1px solid black;
-	text-align: center;
-}
-
-#setup {
-	display: none;
-	margin: 15px;
-}
-
-#moneybar {
-	float: right;
-	border: 0px solid black;
-	background-color: white;
-	margin: 15px;
-	border-radius: 5px;
-	display: none;
-	z-index: 14;
-	position: relative;
-	cursor: default;
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#moneybar table {
-	font-weight: bold;
-	border-spacing: 1px;
-}
-
-#moneybarwrap {
-	position: absolute;
-	min-width: 135px;
-	top: 0px;
-	right: 0px;
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#propertystats {
-	margin-right: 110px;
-}
-
-#refresh {
-	display: none;
-	margin: 15px;
-}
-
-#noF5 {
-	display: none;
-}
-
-#noscript {
-	margin-left: 10px;
-}
-
-#board {
-	display: none;
-	border: 2px solid black;
-	border-spacing: 3px;
-	margin: 25px;
-	float: left;
-}
-
-#jail {
-	border: 1px solid black;
-	height: 65px;
-	width: 65px;
-	position: relative;
-	top: 73px;
-	left: -73px;
-	z-index: 2;
-}
-
-
-#control {
-	position: absolute;
-	z-index: 9;
-	top: 250px;
-	left: 250px;
-	border: 2px solid black;
-	padding: 10px;
-	display: none;
-	background-color: white;
-}
-
-#quickstats {
-	font-size: 12px;
-	font-weight: bold;
-	font-family: arial, sans-serif;
-	border: 2px solid blue;
-	margin: 5px;
-	padding: 3px;
-	width: 80px;
-}
-
-#pname {
-	background-color: white;
-}
-
-#landed {
-	padding: 3px;
-	border: 1px solid gray;
-	border-top: none;
-	width: 302px;
-
-	margin: 0px;
-	text-align: center;
-}
-
-#alert {
-	width: 307px;
-	height: 92px;
-	margin: 0px;
-	padding-left: 1px;
-	border: 1px solid gray;
-	font-family: Consolas, "Courier New", monospace;
-	font-size: 13px;
-	background-color: #FFFFFF;
-	overflow-y: scroll;
-}
-
-#manage {
-	width: 308px;
-	border: 1px solid gray;
-	display: none;
-}
-
-#option {
-	border-bottom: 1px solid gray;
-	background-color: white;
-	display: none;
-	background: white;
-	vertical-align: middle;
-	padding: 3px;
-	text-align: center;
-	min-height: 26px;
-}
-
-#buildings {
-	margin: auto;
-	height: 21px;
-	font-size: 16px;
-	font-weight: bold;
-}
-
-#buildings .house {
-	width: 25px;
-	height: 19px;
-	vertical-align: top;
-	float: none;
-}
-
-#buildings .hotel {
-	width: 26px;
-	height: 19px;
-	vertical-align: top;
-	float: none;
-}
-
-#owned {
-	padding: 3px 0px;
-	background-color: white;
-	text-align: center;
-	max-height: 390px;
-	overflow-y: auto;
-}
-
-#owned .propertycellname {
-	vertical-align: top;
-}
-
-#property {
-	margin-right: 1px;
-	background: white;
-}
-
-#trade {
-	border: 2px solid black;
-	display: none;
-	width: 630px;
-	margin: 15px auto;
-	background-color: white;
-	border-radius: 8px;
-	padding: 2px;
-	z-index: 14;
-}
-
-#trade-leftp-name {
-	font-size: 13px;
-	font-weight: bold;
-}
-
-#trade-leftp-name option {
-	font-size: 13px;
-	font-weight: normal;
-}
-
-#trade-rightp-name {
-	font-size: 13px;
-	font-weight: bold;
-}
-
-#trade-rightp-name option {
-	font-size: 13px;
-	font-weight: normal;
-}
-
-#trade-leftp-money {
-	width: 90%;
-}
-
-#trade-rightp-money {
-	width: 90%;
-}
-
-#deedcolor {
-	background: white;
-	width: 100%;
-	height: 48px;
-}
-
-#deedname {
-	margin-top: 10px;
-	font-weight: bold;
-	font-size: 20px;
-	background-color: white;
-}
-
-#menu {
-	width: 290px;
-	height: 32px;
-	margin: 0px 10px;
-}
-
-#menutable {
-	padding: 0px;
-	text-align: left;
-	font-family: arial, sans-serif;
-	color: white;
-	font-weight: bold;
-	font-size: 16px;
-	border: 1px solid blue;
-	border-radius: 5px 5px 0px 0px;
-	height: 30px;
-	width: 99%;
-	margin: 0px;
-	background-color: #305BC9;
-	/* background-image: -webkit-linear-gradient(bottom,#213EB2,#4787ED);
-	background-image: -moz-linear-gradient(bottom,#213EB2,#4787ED); */
-	background-image: url(images/menu_background.png);
-	/* background-repeat: repeat-x; */
-	overflow: hidden;
-}
-
-#menutable td {
-	vertical-align: top;
-}
-
-#menu a {
-	color: #FFFFFF;
-	text-decoration: none;
-	display: block;
-	height: 100%;
-	width: 100%;
-	padding-top: 8px;
-}
-
-#buy-menu-item {
-	color: #FFFFFF;
-	margin-left: 2px;
-	border-left: none;
-}
-
-#trade-menu-item {
-	color: #AAAAAA;
-	border-right: none;
-	margin-right: 2px;
-}
-
-
-#popup {
-	width: 300px;
-	min-width: 300px;
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	padding: 10px;
-	text-align: center;
-	word-wrap: break-word;
-	line-height: 1.5;
-	border: 2px solid black;
-	border-radius: 10px;
-	background-color: white;
-	display: block;
-	z-index: 13;
-	margin: auto;
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#popupwrap {
-	position: absolute;
-	top: 255px;
-	left: 0px;
-	width: 100%;
-	display: none;
-	background-color: transparent;
-	z-index: 13;
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#popuptext {
-	overflow-x: auto;
-}
-
-/* #popupclose {
-	display: none;
-	position: absolute;
-	top: -24px;
-	right: -25px;
-	width: 30px;
-	height: 30px;
-	border: none;
-	cursor: pointer;
-	overflow: visible;
-	z-index: 12;
-} */
-
-#popupclose input {
-	margin: 0px;
-	background-color: red;
-	height: 18px;
-	width: 18px;
-	padding: 0px;
-}
-
-#popupbackground {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	background-color: #000000;
-	opacity: 0.5;
-	display: none;
-	z-index: 10;
-}
-
-#popupdrag {
-	width: 100%;
-	height: 16px;
-	position: absolute;
-	top: -16px;
-	cursor: move;
-}
-
-#stats {
-	max-width: 914px;
-	min-width: 454px;
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	padding: 10px;
-	text-align: center;
-	word-wrap: break-word;
-	line-height: 1.5;
-	border: 2px solid black;
-	border-radius: 10px;
-	background-color: white;
-	display: block;
-	z-index: 17;
-	margin: auto;
-	position: relative;
-	top: 0px;
-	left: 0px;
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#statswrap {
-	position: absolute;
-	top: 250px;
-	left: 0px;
-	width: 100%;
-	display: none;
-	background-color: transparent;
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#statstext {
-	overflow: hidden;
-	min-height: 70px;
-}
-
-#statsclose {
-	display: block;
-	position: absolute;
-	top: -24px;
-	right: -25px;
-	width: 30px;
-	height: 30px;
-	border: none;
-	cursor: pointer;
-	overflow: visible;
-	z-index: 17;
-}
-
-#statsbackground {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	background-color: #000000;
-	opacity: .5;
-	display: none;
-	z-index: 16;
-}
-
-#statsdrag {
-	width: 100%;
-	height: 16px;
-	position: absolute;
-	top: -16px;
-	cursor: move;
-}
-
-#deed {
-	display: none;
-	position: fixed;
-	border: 2px solid black;
-	width: 235px;
-	height: 275px;
-	background-color: white;
-	z-index: 18;
-	-webkit-user-select: none;
-	user-select: none;
-}
-
-#deed td{
-	border: none;
-}
-
-#deed-header {
-	width: 215px;
-	height: 48px;
-	border: 1px solid black;
-	margin: 9px;
-	background-color: yellow;
-	text-align: center;
-	text-transform: uppercase;
-	font-family: Calibri, Arial;
-}
-
-#deed-name {
-	font-size: 15px;
-	font-weight: bold;
-
-}
-
-#deed-table {
-	margin: 9px;
-	width: 217px;
-	border-spacing: 1px;
-}
-
-#deed-mortgaged {
-	font-family: Calibri, Arial;
-	font-size: 16px;
-	text-align: center;
-
-}
-
-#deed-mortgaged-name {
-	font-size: 18px;
-	font-weight: bold;
-	text-transform: uppercase;
-	margin: 30px 20px 20px;
-}
-
-#deed-special {
-	font-family: Calibri, Arial;
-	text-align: justify;
-}
-
-#deed-special-name {
-	text-align: center;
-	font-size: 18px;
-	font-weight: bold;
-	border-style: solid;
-	border-width: 2px 0px;
-	text-transform: uppercase;
-	margin: 50px 20px 20px;
-}
-
-#deed-special-text {
-	margin: 20px;
-	font-size: 15px;
-}
-
-#deed-special-footer {
-	margin: 0px 20px;
-	width: 195px;
-	position: absolute;
-	bottom: 20px;
-	font-size: 16px;
-}
-
-#enlarge-wrap {
-	border: none;
-	z-index: 0;
-}
-
-.menu-item:hover {
-	/* background-image: -webkit-linear-gradient(bottom,#000080,#4787ED);
-	background-image: -moz-linear-gradient(bottom,#000080,#4787ED); */
-
-	background-image: url(images/menu_background_hover.png);
-}
-
-.menu-item {
-	padding: 0px;
-	border-collapse: collapse;
-	text-align: center;
-	display: table-cell;
-	background-color: transparent;
-	border: none;
-	border-right: 2px solid white;
-	height: 30px;
-	min-width: 90px;
-	width: 90px;
-	max-width: 90px;
-	overflow: hidden;
-}
-
-.die {
-	display: none;
-	margin: 5px;
-	float: left;
-}
-
-.die-no-img {
-
-
-	border-radius: 6px;
-	font-weight: bold;
-	border: 2px solid black;
-	padding: 5px 10px;
-}
-.house {
-	width: 25px;
-	height: 19px;
-	vertical-align: middle;
-	float: right;
-}
-
-.hotel {
-	width: 26px;
-	height: 19px;
-	vertical-align: middle;
-	float: right;
-}
-
-.cell {
-	position: relative;
-	top: 0px;
-	left: 0px;
-	padding: 0px;
-	vertical-align: bottom;
-	background-repeat: no-repeat;
-	background-size: auto 40px;
-}
-
-.board-center {
-	width: 675px;
-	border: none;
-	vertical-align: bottom;
-	background-repeat: no-repeat;
-	background-size: auto 40px;
-}
-
-.board-corner {
-	width: 102px;
-	height: 102px;
-}
-
-.board-top {
-	width: 72px;
-	height: 102px;
-}
-
-.board-bottom {
-	width: 72px;
-	height: 102px;
-}
-
-.board-left {
-	width: 102px;
-	height: 72px;
-}
-
-.board-right {
-	width: 102px;
-	height: 72px;
-}
-
-.enlarge {
-	width: 150px;
-	height: 200px;
-	display: none;
-	background-color: white;
-	border: 2px solid black;
-	text-align: center;
-	font-size: 12px;
-	font-family: arial, sans-serif;
-	position: fixed;
-	z-index: 15;
-}
-
-.enlarge-color {
-	background: white;
-	width: 100%;
-	height: 40px;
-}
-
-.enlarge-name {
-	font-weight: bold;
-	font-size: 20px;
-	background-color: white;
-	height: 45px;
-}
-
-.enlarge-price {
-	background-color: white;
-	vertical-align: bottom;
-	height: 25px;
-}
-
-.enlarge-token {
-	height: 45px;
-	width: 150px;
-}
-
-.moneybarcell {
-	width: 83px;
-	min-width: 83px;
-}
-
-.moneybararrowcell {
-	background: white;
-	width: 30px;
-	border: none;
-	text-align: right;
-	padding: 0px;
-}
-
-.money-bar-arrow {
-	height: 30px;
-	width: 30px;
-}
-.propertycellcheckbox {
-	width: 20px;
-	height: 20px;
-	border: none;
-	vertical-align: middle;
-}
-
-.propertycellcolor {
-	padding: 0px;
-	width: 20px;
-	height: 20px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: white;
-}
-
-.propertycellname {
-	height: 20px;
-	width: 250px;
-	border: none;
-	cursor: default;
-	text-align: left;
-	vertical-align: middle;
-}
-
-.propertycelldeed {
-	width: 18px;
-	height: 20px;
-	border: 1px solid grey;
-	cursor: pointer;
-	display: none;
-}
-
-.statscellcolor {
-	padding: 0px;
-	width: 22px;
-	height: 20px;
-	border: none;
-}
-
-.statscellname {
-	height: 20px;
-	border: none;
-	cursor: default;
-	text-align: left;
-	min-width: 172px;
-}
-
-.statsplayername {
-	font-weight: bold;
-	font-size: 24px;
-}
-
-.statscell {
-	border: 2px solid black;
-	padding: 8px;
-	vertical-align: top;
-	width: 202px;
-	min-width: 115px;
-}
-
-.trade-cell {
-	border: none;
-	border-radius: 3px;
-	width: 308px;
-	height: 26px;
-	vertical-align: middle;
-}
-
-.cell-anchor {
-	width: 100%;
-	height: 100%;
-	position: relative;
-	bottom: 0px;
-	left: 0px;
-}
-
-.cell-name {
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	text-align: center;
-	width: 100%;
-}
-
-.cell-position-holder {
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	position: relative;
-}
-
-.cell-position {
-	height: 12px;
-	width: 12px;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-}
-
-.cell-owner {
-	background-size: cover;
-	display: none;
-	position: absolute;
-}
-
-.board-top .cell-owner {
-	background-image: url("images/hori-bar.png");
-
-	height: 15px;
-	left: 0px;
-
-
-
-	top: -25px;
-	width: 72px;
-
-}
-
-.board-bottom .cell-owner {
-	background-image: url("images/hori-bar.png");
-	bottom: -25px;
-
-	height: 15px;
-
-
-
-
-	left: 0px;
-	width: 72px;
-}
-
-.board-left .cell-owner {
-	background-image: url("images/vert-bar.png");
-
-	height: 68px;
-	left: -25px;
-
-
-
-	top: 0px;
-	width: 15px;
-
-}
-
-.board-right .cell-owner {
-	background-image: url("images/vert-bar.png");
-
-	height: 68px;
-	right: -25px;
-
-
-
-	top: 0px;
-	width: 15px;
-
-}
-
-/* Componentes didácticos de la edición de Álgebra Abstracta. */
-#algebra-learning {
-	clear: both;
-	max-width: 910px;
-	margin: 18px auto;
-	border: 2px solid #243b55;
-	background: #f7fbff;
-	box-shadow: 2px 3px 0 rgba(36, 59, 85, 0.2);
-	font-size: 13px;
-}
-
-.algebra-panel-header {
-	padding: 8px 12px;
-	background: #243b55;
-	color: #fff;
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.algebra-panel-header span { color: #f6c945; font-size: 22px; vertical-align: middle; }
-.algebra-player-summary { padding: 9px 12px; background: #e5f2ff; line-height: 1.45; }
-#algebra-learning details { border-top: 1px solid #cbd9e6; padding: 7px 12px; }
-#algebra-learning summary { cursor: pointer; color: #243b55; font-weight: bold; }
-#algebra-learning p { margin: 7px 0 2px; line-height: 1.4; }
-.evidence-player { padding: 3px 0; border-bottom: 1px dotted #b8c7d5; }
-
-.algebra-card { color: #203040; line-height: 1.45; }
-.algebra-card h3 { margin: 5px 0 8px; color: #243b55; }
-.algebra-card textarea { box-sizing: border-box; width: 100%; margin: 5px 0 10px; padding: 7px; border: 1px solid #8194a8; font-family: Arial, sans-serif; }
-.algebra-badge { display: inline-block; padding: 3px 7px; border-radius: 3px; background: #2b6cb0; color: white; font-size: 11px; font-weight: bold; text-transform: uppercase; }
-.algebra-proof .algebra-badge { background: #805ad5; }
-.algebra-counterexample .algebra-badge { background: #c05621; }
-.algebra-classification .algebra-badge { background: #2f855a; }
-.algebra-context { padding: 7px; background: #fff8db; border-left: 4px solid #f6c945; }
-.algebra-feedback { line-height: 1.5; }
-.algebra-feedback.correct h3 { color: #1e7b43; }
-.algebra-feedback.incorrect h3 { color: #b33a3a; }
-.algebra-deed-info { display: none; margin: 5px; padding: 5px; border: 1px solid #7f9db9; background: #f5fbff; color: #243b55; font-size: 11px; line-height: 1.3; }
-
-@media (max-width: 760px) {
-	#algebra-learning { margin: 12px 6px; }
-	#popup { max-width: calc(100vw - 24px); }
-}
+/* Modernized styles for Monopoly educativo
+   - Preserve board measurements (width/height) used by JS
+   - Only visual changes, no JS or HTML structure changes
+*/
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --muted:#6b7680;
+  --accent:#2463b8;
+  --accent-2:#2b6cb0;
+  --success:#1e7b43;
+  --danger:#b33a3a;
+  --glass: rgba(255,255,255,0.7);
+  --radius:10px;
+  --soft-shadow: 0 10px 30px rgba(20,30,50,0.08);
+  --soft-shadow-2: 0 6px 18px rgba(20,30,50,0.06);
+}
+
+/* Base */
+*{box-sizing:border-box}
+body{
+  background: linear-gradient(180deg,#f6f9fc 0%, var(--bg) 100%);
+  margin:0;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color:#1f2933;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-width: 1075px; /* keep original minimum width so board layout remains consistent */
+}
+
+td{font-size:13px; font-family:inherit; text-align:center; color:var(--muted)}
+
+/* Top-level sections */
+#setup{ display:none; margin:18px }
+#refresh{ display:none; margin:15px }
+#noF5{ display:none }
+#noscript{ margin-left:10px }
+
+/* Money bar */
+#moneybar{
+  float:right;
+  background:var(--card);
+  margin:16px;
+  border-radius:var(--radius);
+  display:none; z-index:14; position:relative; cursor:default;
+  -webkit-user-select:none; user-select:none; box-shadow:var(--soft-shadow-2);
+  border:1px solid rgba(30,40,60,0.06);
+}
+#moneybar table{ font-weight:700; border-spacing:4px }
+#moneybarwrap{ position:absolute; min-width:135px; top:12px; right:12px; -webkit-user-select:none; user-select:none }
+
+/* Board container: visual frame only */
+#board{
+  display:none;
+  border-radius:12px;
+  border:none;
+  margin:22px;
+  float:left;
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,250,250,0.8));
+  padding:10px;
+  box-shadow: var(--soft-shadow);
+}
+
+/* Jail small visual */
+#jail{ border:1px dashed rgba(0,0,0,0.08); height:65px; width:65px; position:relative; top:73px; left:-73px; z-index:2; border-radius:6px; background:linear-gradient(180deg,#fff,#fcfdff) }
+
+/* Control panel */
+#control{
+  position:absolute; z-index:9; top:250px; left:250px; padding:14px; display:none;
+  background:var(--card); border-radius:var(--radius); box-shadow:var(--soft-shadow);
+  border:1px solid rgba(30,40,60,0.06); width:340px;
+}
+
+/* Quick stats */
+#quickstats{ font-size:13px; font-weight:700; border-radius:8px; margin:6px; padding:8px; width:120px; background:linear-gradient(180deg,#fff,#f7fbff); border:1px solid rgba(36,99,184,0.12); color:var(--accent) }
+#pname{ background:transparent; font-weight:700 }
+
+/* Landed / Alerts */
+#landed{ padding:10px; border-radius:8px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(30,40,60,0.06); width:100%; text-align:center; margin:6px 0 }
+#alert{ width:100%; height:100px; margin:0; padding:8px; border-radius:8px; border:1px solid rgba(30,40,60,0.06); font-family: Consolas, "Courier New", monospace; font-size:13px; background: #fff; overflow-y:auto }
+
+#manage{ width:100%; border-radius:8px; border:1px solid rgba(30,40,60,0.06); display:none; background:var(--card); padding:8px }
+#option{ border-bottom:1px solid rgba(30,40,60,0.04); display:none; vertical-align:middle; padding:6px; text-align:center; min-height:32px }
+#buildings{ margin:auto; height:22px; font-size:15px; font-weight:700 }
+#owned{ padding:6px 0; background:var(--card); text-align:left; max-height:390px; overflow-y:auto }
+
+#trade{ display:none; width:100%; max-width:720px; margin:18px auto; background:var(--card); border-radius:12px; padding:12px; box-shadow:var(--soft-shadow); border:1px solid rgba(30,40,60,0.06) }
+#trade-leftp-name, #trade-rightp-name{ font-size:14px; font-weight:700 }
+
+/* Deed / property card */
+#deed{ display:none; position:fixed; width:260px; height:auto; background:var(--card); z-index:18; -webkit-user-select:none; user-select:none; border-radius:12px; box-shadow:var(--soft-shadow); border:1px solid rgba(30,40,60,0.06) }
+#deed-header{ width:100%; padding:12px; border-radius:8px 8px 0 0; background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; text-transform:uppercase; font-weight:700 }
+#deed-name{ font-size:15px; font-weight:700; padding:8px }
+#deed-table{ margin:9px; width:217px; border-spacing:1px }
+#deed-mortgaged{ font-size:16px; text-align:center }
+#deed-mortgaged-name{ font-size:18px; font-weight:700; text-transform:uppercase; margin:30px 20px 20px }
+#deed-special{ text-align:justify }
+#deed-special-name{ text-align:center; font-size:18px; font-weight:700; border-style:solid; border-width:2px 0 0 0; text-transform:uppercase; margin:20px 12px }
+#deed-special-text{ margin:20px; font-size:15px }
+#deed-special-footer{ margin:0px 12px; width:calc(100% - 24px); position:relative; bottom:0; font-size:16px }
+
+/* Menu styles */
+.menu-item{ padding:0; text-align:center; display:table-cell; height:36px; min-width:90px; width:90px; color:#fff }
+.menu-item:hover{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); border-radius:8px }
+#menutable{ padding:0; text-align:left; font-family:inherit; color:#fff; font-weight:700; font-size:16px; border-radius:8px; height:36px; width:99%; margin:0; background:linear-gradient(90deg,var(--accent),#3a78d6); overflow:hidden }
+#menu a{ color:#FFF; text-decoration:none; display:block; height:100%; width:100%; padding-top:8px }
+
+/* Popup / modal */
+#popup{ width:100%; max-width:520px; font-family:inherit; font-size:15px; padding:16px; text-align:left; word-wrap:break-word; line-height:1.5; border-radius:12px; background:var(--card); box-shadow:var(--soft-shadow); border:1px solid rgba(30,40,60,0.06); margin:auto; -webkit-user-select:none; user-select:none }
+#popupwrap{ position:fixed; top:0; left:0; width:100%; height:100%; display:none; background:rgba(0,0,0,0.35); z-index:9000 }
+#popuptext{ overflow:auto }
+#popupbackground{ display:none }
+
+/* Stats panel */
+#stats{ max-width:940px; min-width:454px; font-size:14px; padding:12px; text-align:left; line-height:1.4; border-radius:12px; background:var(--card); box-shadow:var(--soft-shadow); border:1px solid rgba(30,40,60,0.06); margin:auto; position:relative }
+#statstext{ overflow:hidden; min-height:70px }
+
+/* enlarge popup */
+.enlarge{ width:150px; height:200px; display:none; background:var(--card); border-radius:8px; border:1px solid rgba(30,40,60,0.06); text-align:center; font-size:12px; font-family:inherit; position:fixed; z-index:15; box-shadow:var(--soft-shadow-2) }
+.enlarge-color{ background:white; width:100%; height:40px }
+.enlarge-name{ font-weight:700; font-size:20px; background-color:white; height:45px }
+.enlarge-price{ background-color:white; vertical-align:bottom; height:25px }
+.enlarge-token{ height:45px; width:150px }
+
+/* Board cell base -> keep widths/heights as original to not break movement */
+.cell{ position:relative; padding:0; vertical-align:bottom; background-repeat:no-repeat; background-size:auto 40px }
+.board-center{ width:675px; border:none; vertical-align:bottom; background-repeat:no-repeat; background-size:auto 40px }
+.board-corner{ width:102px; height:102px }
+.board-top{ width:72px; height:102px }
+.board-bottom{ width:72px; height:102px }
+.board-left{ width:102px; height:72px }
+.board-right{ width:102px; height:72px }
+
+/* cell hover and subtle effect (visual only) */
+.cell-anchor{ width:100%; height:100%; position:relative; bottom:0; left:0 }
+.cell:hover .cell-anchor{ outline: 3px solid rgba(36,99,184,0.08); box-shadow: 0 6px 20px rgba(36,99,184,0.06); transform: translateY(-2px); transition: all 180ms ease }
+
+.cell-name{ position:absolute; bottom:0; left:0; text-align:center; width:100% }
+.cell-position-holder{ width:100%; height:100%; z-index:1; position:relative }
+.cell-position{ height:12px; width:12px; position:absolute; top:0; left:0; border-radius:3px }
+.cell-owner{ background-size:cover; display:none; position:absolute }
+
+.board-top .cell-owner{ background-image:url("images/hori-bar.png"); height:15px; left:0; top:-25px; width:72px }
+.board-bottom .cell-owner{ background-image:url("images/hori-bar.png"); bottom:-25px; height:15px; left:0; width:72px }
+.board-left .cell-owner{ background-image:url("images/vert-bar.png"); height:68px; left:-25px; top:0; width:15px }
+.board-right .cell-owner{ background-image:url("images/vert-bar.png"); height:68px; right:-25px; top:0; width:15px }
+
+/* Property cells list */
+.propertycellcheckbox{ width:20px; height:20px; border:none; vertical-align:middle }
+.propertycellcolor{ padding:0; width:20px; height:20px; border-width:1px; border-style:solid; border-color:white }
+.propertycellname{ height:20px; width:250px; border:none; cursor:default; text-align:left; vertical-align:middle }
+.propertycelldeed{ width:18px; height:20px; border:1px solid grey; cursor:pointer; display:none }
+
+/* Stats / player cards */
+.statscell{ border-radius:8px; padding:12px; vertical-align:top; width:202px; min-width:115px; background:linear-gradient(180deg,#fff,#f7fbff); border:1px solid rgba(30,40,60,0.06) }
+.statsplayername{ font-weight:700; font-size:20px }
+.statscellcolor{ padding:0; width:22px; height:20px; border:none }
+.statscellname{ height:20px; border:none; cursor:default; text-align:left; min-width:172px }
+
+/* Trade */
+.trade-cell{ border:none; border-radius:6px; width:308px; height:26px; vertical-align:middle }
+
+/* Dice */
+.die{ display:none; margin:6px; float:left }
+.die-no-img{ border-radius:8px; font-weight:700; border:1px solid rgba(30,40,60,0.08); padding:6px 10px; background:#fff }
+
+/* Algebra learning components */
+#algebra-learning{ clear:both; max-width:910px; margin:18px auto; border-radius:12px; background:#f7fbff; box-shadow:2px 6px 18px rgba(36,59,85,0.06); font-size:13px; border:1px solid rgba(36,59,85,0.06) }
+.algebra-panel-header{ padding:12px 16px; background:var(--accent); color:#fff; font-size:16px; font-weight:700; border-radius:8px 8px 0 0 }
+.algebra-panel-header span{ color:#f6c945; font-size:22px; vertical-align:middle }
+.algebra-player-summary{ padding:12px; background:#eaf4ff; line-height:1.45 }
+#algebra-learning details{ border-top:1px solid #e1ecfb; padding:10px 12px }
+#algebra-learning summary{ cursor:pointer; color:var(--accent); font-weight:700 }
+.algebra-card{ color:#203040; line-height:1.45 }
+.algebra-card h3{ margin:8px 0; color:var(--accent) }
+.algebra-card textarea{ box-sizing:border-box; width:100%; margin:8px 0; padding:10px; border:1px solid rgba(30,40,60,0.08); border-radius:8px; font-family:inherit }
+.algebra-badge{ display:inline-block; padding:4px 8px; border-radius:6px; background:var(--accent-2); color:white; font-size:11px; font-weight:700; text-transform:uppercase }
+.algebra-proof .algebra-badge{ background:#805ad5 }
+.algebra-counterexample .algebra-badge{ background:#c05621 }
+.algebra-classification .algebra-badge{ background:#2f855a }
+.algebra-context{ padding:8px; background:#fff8db; border-left:4px solid #f6c945; border-radius:6px }
+.algebra-feedback.correct h3{ color:var(--success) }
+.algebra-feedback.incorrect h3{ color:var(--danger) }
+.algebra-deed-info{ display:none; margin:8px; padding:8px; border:1px solid #7f9db9; background:#f5fbff; color:var(--accent); font-size:12px; line-height:1.3 }
+
+/* Buttons style (global) */
+input[type="button"], button{
+  background: linear-gradient(180deg,var(--accent),var(--accent-2));
+  color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700;
+  box-shadow: 0 6px 14px rgba(36,99,184,0.12); transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+input[type="button"]:hover, button:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(36,99,184,0.14) }
+input[type="button"]:active, button:active{ transform:translateY(0) }
+
+/* Multiplayer lobby visuals */
+#multiplayer-controls{ margin-top:12px }
+#lobby{ display:none; border-radius:10px; padding:12px; background:linear-gradient(180deg,#fff,#f7fbff); border:1px solid rgba(30,40,60,0.06); box-shadow:var(--soft-shadow-2) }
+#qrcode{ margin:8px 0 }
+#lobby-info{ font-weight:700; color:var(--accent) }
+#lobby-players{ margin-top:8px }
+
+/* Responsive adjustments */
+@media (max-width: 1200px){
+  #control{ left:20px; top:180px }
+  #moneybarwrap{ right:8px }
+}
+@media (max-width: 1000px){
+  body{ min-width:900px }
+}
+@media (max-width: 760px){
+  #algebra-learning{ margin:12px 6px }
+  #popup{ max-width: calc(100vw - 24px) }
+  /* allow users to scroll horizontally on small screens */
+  body{ overflow-x:auto }
+}
+
+/* keep original classes that may be toggled from JS (no behaviour changes) */
+.menu-item, .money-bar-row, .property-cell-row { transition: all 150ms ease }
+
+/* small utilities */
+.hidden{ display:none }
+
+/* End of styles.css */
