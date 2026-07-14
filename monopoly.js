@@ -2534,7 +2534,16 @@ function land(increasedRent) {
 		}
 
 
-		game.addPropertyToAuctionQueue(p.position);
+		// If AI did not buy, enqueue property for auction. For human players
+		// we must let them resolve the algebra challenge first, so do not
+		// queue immediately; auction will occur later if the property remains
+		// unowned after the visit.
+		if (!p.human) {
+			// If AI chose not to buy, add to auction queue
+			if (square[p.position].owner === 0) {
+				game.addPropertyToAuctionQueue(p.position);
+			}
+		}
 	}
 
 	// Collect rent
