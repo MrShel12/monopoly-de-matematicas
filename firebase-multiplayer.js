@@ -3,7 +3,6 @@
 // snapshots dynamic state to the DB and applies remote snapshots.
 
 var MP = (function() {
-  var config = window.firebaseConfig || null;
   var app = null;
   var db = null;
   var isMultiplayer = false;
@@ -18,22 +17,31 @@ var MP = (function() {
   var applyingRemote = false;
 
   function init() {
-    if (!config) {
+    // Read configuration at initialization time (in case scripts loaded in different order)
+    var cfg = window.firebaseConfig || null;
+    if (!cfg) {
       console.warn('firebaseConfig not found; multiplayer disabled until config is set.');
       return;
     }
+
+    if (typeof window.firebase === 'undefined') {
+      console.error('Firebase SDK not detected. Ensure Firebase scripts are loaded before firebase-multiplayer.js');
+      return;
+    }
+
     try {
-      app = firebase.initializeApp(config);
+      app = firebase.initializeApp(cfg);
       db = firebase.database();
     } catch (e) {
       console.error('Firebase init error', e);
       return;
     }
 
-    // Wire UI buttons
-    document.getElementById('create-room').addEventListener('click', onCreateRoom);
-    document.getElementById('join-room').addEventListener('click', onJoinRoom);
-    document.getElementById('start-online-game').addEventListener('click', onStartOnlineGame);
+    // Wire UI buttons (guard in case DOM elements are missing)
+    var el;
+    el = document.getElementById('create-room'); if (el) el.addEventListener('click', onCreateRoom);
+    el = document.getElementById('join-room'); if (el) el.addEventListener('click', onJoinRoom);
+    el = document.getElementById('start-online-game'); if (el) el.addEventListener('click', onStartOnlineGame);
 
     // Wrap state-changing functions so we can push snapshots after they run.
     wrapFunction(window, 'buy');
@@ -64,6 +72,30 @@ var MP = (function() {
     }
 
     console.log('MP initialized');
+
+    // If the page is opened with ?id=ROOMCODE, prefill the join input.
+    try {
+      var url = new URL(window.location.href);
+      var idParam = url.searchParams.get('id');
+      if (idParam) {
+        var joinInput = document.getElementById('join-code');
+        if (joinInput) joinInput.value = idParam;
+
+        // If user previously saved a name, prefill and auto-join.
+        var savedName = sessionStorage.getItem('mp_join_name');
+        var nameInput = document.getElementById('join-name');
+        if (nameInput && savedName) {
+          nameInput.value = savedName;
+          // Attempt automatic join if elements exist and db is ready
+          if (document.getElementById('join-room')) {
+            // Slight delay to ensure listeners are attached
+            setTimeout(function() { try { onJoinRoom(); } catch (e) { console.error('auto join failed', e); } }, 200);
+          }
+        }
+      }
+    } catch (e) {
+      // ignore URL parsing errors
+    }
   }
 
   function wrapFunction(obj, name) {
@@ -97,8 +129,10 @@ var MP = (function() {
     isMultiplayer = true;
     isHost = true;
 
-    // Generate QR linking to join url (user will need to host at their site)
-    var joinUrl = 'https://mi-monopoly.com/join.html?id=' + roomCode;
+    // Generate QR linking to join url on the same host/path where this page is served
+    // Use current page base (without query/hash) so the QR opens this page with ?id=ROOMCODE
+    var base = (window.location.href || '').split('?')[0].split('#')[0];
+    var joinUrl = base + (base.indexOf('?') === -1 ? '?' : '&') + 'id=' + roomCode;
     var qrcodeEl = document.getElementById('qrcode');
     qrcodeEl.innerHTML = '';
     new QRCode(qrcodeEl, { text: joinUrl, width: 128, height: 128 });
