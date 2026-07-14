@@ -83,6 +83,16 @@ function Game() {
 			return false;
 		}
 
+		// If a popup (e.g., an algebra challenge) is currently shown,
+		// defer starting the auction so it doesn't replace the active dialog.
+		try {
+			if (typeof jQuery !== 'undefined' && (algebraState.active || $("#popupwrap").is(":visible"))) {
+				// Try again shortly without removing from the queue.
+				setTimeout(function() { try { game.auction(); } catch (e) {} }, 600);
+				return false;
+			}
+		} catch (e) {}
+
 		index = auctionQueue.shift();
 
 		var s = square[index];
@@ -1208,7 +1218,13 @@ function completeAlgebraChallenge(answer) {
 		$("#popupwrap").hide(); $("#popupbackground").hide();
 		var completed = algebraState.active; algebraState.active = null;
 		updateAlgebraDashboard(); updateMoney();
-		if (correct && completed.purpose === "property") renderPropertyPurchasePrompt(completed.position);
+		if (correct && completed.purpose === "property") {
+			renderPropertyPurchasePrompt(completed.position);
+		} else if (!correct && completed.purpose === "property") {
+			// If the player failed the property challenge, enqueue it for auction
+			// after the popup is closed so the auction doesn't interrupt the dialog.
+			try { game.addPropertyToAuctionQueue(completed.position); } catch (e) {}
+		}
 	};
 	document.getElementById("popuptext").innerHTML = "<div class='algebra-feedback " + (correct ? "correct" : "incorrect") + "'><h3>" + (correct ? "¡Respuesta correcta!" : "Aún no es suficiente") + "</h3><p>" + (correct ? "Obtienes puntos algebraicos" + (active.purpose === "card" ? " y 75 UA." : "; la compra queda desbloqueada.") : "Revisa la justificación esperada antes de continuar.") + "</p><p><strong>Respuesta guía:</strong> " + active.challenge.answer + "</p><input type='button' id='algebra-continue' value='Continuar' /></div>";
 	$("#algebra-continue").on("click", next).focus();
