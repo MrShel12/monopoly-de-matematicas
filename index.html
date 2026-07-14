@@ -498,7 +498,7 @@
 		</div>
 		</div>
 
-		<div id="noF5">Note: Refreshing this page or navigating away from it may end your game without warning.</div>
+		<div id="noF5">Nota: Actualizar esta página o navegar fuera de ella puede terminar tu partida sin avisar.</div>
 	</div>
 
 	<div id="control">
@@ -510,15 +510,15 @@
 							<tr>
 								<td class="menu-item" id="buy-menu-item">
 
-									<a href="javascript:void(0);" title="View alerts and buy the property you landed on.">Buy</a>
+									<a href="javascript:void(0);" title="Consulta los avisos y compra la propiedad en la que caíste.">Comprar</a>
 								</td>
 								<td class="menu-item" id="manage-menu-item">
 
-									<a href="javascript:void(0);" title="View, mortgage, and improve your property. ">Manage</a>
+									<a href="javascript:void(0);" title="Consulta, hipoteca y mejora tus propiedades.">Gestionar</a>
 								</td>
 								<td class="menu-item" id="trade-menu-item">
 
-									<a href="javascript:void(0);" title="Exchange property with other players.">Trade</a>
+									<a href="javascript:void(0);" title="Intercambia propiedades con otros jugadores.">Intercambiar</a>
 								</td>
 							</tr>
 						</table>
@@ -532,9 +532,9 @@
 					<div id="manage">
 						<div id="option">
 							<div id="buildings" title="Available buildings"></div>
-							<input type="button" value="Buy house" id="buyhousebutton"/>
-							<input type="button" value="Mortgage" id="mortgagebutton" />
-							<input type="button" value="Sell house" id="sellhousebutton"/>
+							<input type="button" value="Comprar casa" id="buyhousebutton"/>
+							<input type="button" value="Hipotecar" id="mortgagebutton" />
+							<input type="button" value="Vender casa" id="sellhousebutton"/>
 						</div>
 						<div id="owned"></div>
 					</div>
@@ -591,10 +591,10 @@
 			</tr>
 			<tr>
 				<td class="trade-cell">
-					$&nbsp;<input id="trade-leftp-money" value="0" title="Enter amount to exchange with the other player." />
+					$&nbsp;<input id="trade-leftp-money" value="0" title="Ingresa la cantidad para intercambiar con el otro jugador." />
 				</td>
 				<td class="trade-cell">
-					$&nbsp;<input id="trade-rightp-money" value="0" title="Enter amount to exchange with the other player." />
+					$&nbsp;<input id="trade-rightp-money" value="0" title="Ingresa la cantidad para intercambiar con el otro jugador." />
 				</td>
 			</tr>
 			<tr>
@@ -603,10 +603,10 @@
 			</tr>
 			<tr>
 				<td colspan="2" class="trade-cell">
-					<input type="button" id="proposetradebutton" value="Propose Trade" onclick="game.proposeTrade();" title="Exchange the money and properties that are checked above." />
-					<input type="button" id="canceltradebutton" value="Cancel Trade" onclick='game.cancelTrade();' title="Cancel the trade." />
-					<input type="button" id="accepttradebutton" value="Accept Trade" onclick="game.acceptTrade();" title="Accept the proposed trade." />
-					<input type="button" id="rejecttradebutton" value="Reject Trade" onclick='game.cancelTrade();' title="Reject the proposed trade." />
+					<input type="button" id="proposetradebutton" value="Proponer intercambio" onclick="game.proposeTrade();" title="Intercambia el dinero y las propiedades seleccionadas arriba." />
+					<input type="button" id="canceltradebutton" value="Cancelar intercambio" onclick='game.cancelTrade();' title="Cancela el intercambio." />
+					<input type="button" id="accepttradebutton" value="Aceptar intercambio" onclick="game.acceptTrade();" title="Acepta el intercambio propuesto." />
+					<input type="button" id="rejecttradebutton" value="Rechazar intercambio" onclick='game.cancelTrade();' title="Rechaza el intercambio propuesto." />
 				</td>
 			</tr>
 		</table>

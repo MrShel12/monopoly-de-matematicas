@@ -24,7 +24,7 @@ function Game() {
 			p.AI.payDebt();
 
 			if (p.money < 0) {
-				popup("<p>" + p.name + " is bankrupt. All of its assets will be turned over to " + player[p.creditor].name + ".</p>", game.bankruptcy);
+				popup("<p>" + p.name + " está en bancarrota. Todos sus bienes pasarán a " + player[p.creditor].name + ".</p>", game.bankruptcy);
 			} else {
 				roll();
 			}
@@ -56,11 +56,11 @@ function Game() {
 		var p = player[highestbidder];
 		var sq = square[auctionproperty];
 
-		if (highestbid > 0) {
-			p.pay(highestbid, 0);
-			sq.owner = highestbidder;
-			addAlert(p.name + " bought " + sq.name + " for $" + highestbid + ".");
-		}
+            if (highestbid > 0) {
+            	p.pay(highestbid, 0);
+            	sq.owner = highestbidder;
+            	addAlert(p.name + " compró " + sq.name + " por $" + highestbid + ".");
+        }
 
 		for (var i = 1; i <= pcount; i++) {
 			player[i].bidding = true;
@@ -485,7 +485,7 @@ function Game() {
 			currentTableCellCheckbox = currentTableCell.appendChild(document.createElement("input"));
 			currentTableCellCheckbox.type = "checkbox";
 			currentTableCellCheckbox.id = "tradeleftcheckbox40";
-			currentTableCellCheckbox.title = "Check this box to include this Get Out of Jail Free Card in the trade.";
+			currentTableCellCheckbox.title = "Marca esta casilla para incluir la tarjeta para salir de prisión gratis en el intercambio.";
 
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellcolor";
@@ -495,7 +495,7 @@ function Game() {
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellname";
 
-			currentTableCell.textContent = "Get Out of Jail Free Card";
+			currentTableCell.textContent = "Tarjeta para salir de prisión gratis";
 		} else if (recipient.communityChestJailCard) {
 			currentTableRow = recipientSideTable.appendChild(document.createElement("tr"));
 			currentTableRow.onclick = tableRowOnClick;
@@ -505,7 +505,7 @@ function Game() {
 			currentTableCellCheckbox = currentTableCell.appendChild(document.createElement("input"));
 			currentTableCellCheckbox.type = "checkbox";
 			currentTableCellCheckbox.id = "traderightcheckbox40";
-			currentTableCellCheckbox.title = "Check this box to include this Get Out of Jail Free Card in the trade.";
+			currentTableCellCheckbox.title = "Marca esta casilla para incluir la tarjeta para salir de prisión gratis en el intercambio.";
 
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellcolor";
@@ -515,7 +515,7 @@ function Game() {
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellname";
 
-			currentTableCell.textContent = "Get Out of Jail Free Card";
+			currentTableCell.textContent = "Tarjeta para salir de prisión gratis";
 		}
 
 		if (initiator.chanceJailCard) {
@@ -527,7 +527,7 @@ function Game() {
 			currentTableCellCheckbox = currentTableCell.appendChild(document.createElement("input"));
 			currentTableCellCheckbox.type = "checkbox";
 			currentTableCellCheckbox.id = "tradeleftcheckbox41";
-			currentTableCellCheckbox.title = "Check this box to include this Get Out of Jail Free Card in the trade.";
+			currentTableCellCheckbox.title = "Marca esta casilla para incluir la tarjeta para salir de prisión gratis en el intercambio.";
 
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellcolor";
@@ -537,7 +537,7 @@ function Game() {
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellname";
 
-			currentTableCell.textContent = "Get Out of Jail Free Card";
+			currentTableCell.textContent = "Tarjeta para salir de prisión gratis";
 		} else if (recipient.chanceJailCard) {
 			currentTableRow = recipientSideTable.appendChild(document.createElement("tr"));
 			currentTableRow.onclick = tableRowOnClick;
@@ -547,7 +547,7 @@ function Game() {
 			currentTableCellCheckbox = currentTableCell.appendChild(document.createElement("input"));
 			currentTableCellCheckbox.type = "checkbox";
 			currentTableCellCheckbox.id = "traderightcheckbox41";
-			currentTableCellCheckbox.title = "Check this box to include this Get Out of Jail Free Card in the trade.";
+			currentTableCellCheckbox.title = "Marca esta casilla para incluir la tarjeta para salir de prisión gratis en el intercambio.";
 
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellcolor";
@@ -557,7 +557,7 @@ function Game() {
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellname";
 
-			currentTableCell.textContent = "Get Out of Jail Free Card";
+			currentTableCell.textContent = "Tarjeta para salir de prisión gratis";
 		}
 
 		if (initiatorSideTable.lastChild) {
@@ -782,11 +782,11 @@ function Game() {
 
 
 		if (money > 0 && money > initiator.money) {
-			document.getElementById("trade-leftp-money").value = initiator.name + " does not have $" + money + ".";
+			document.getElementById("trade-leftp-money").value = initiator.name + " no tiene $" + money + ".";
 			document.getElementById("trade-leftp-money").style.color = "red";
 			return false;
 		} else if (money < 0 && -money > recipient.money) {
-			document.getElementById("trade-rightp-money").value = recipient.name + " does not have $" + (-money) + ".";
+			document.getElementById("trade-rightp-money").value = recipient.name + " no tiene $" + (-money) + ".";
 			document.getElementById("trade-rightp-money").style.color = "red";
 			return false;
 		}
@@ -802,12 +802,12 @@ function Game() {
 		isAPropertySelected |= tradeObj.getChanceJailCard();
 
 		if (isAPropertySelected === 0) {
-			popup("<p>One or more properties must be selected in order to trade.</p>");
+			popup("<p>Debes seleccionar una o más propiedades para intercambiar.</p>");
 
 			return false;
 		}
 
-		if (showAlerts && !confirm(initiator.name + ", are you sure you want to make this exchange with " + recipient.name + "?")) {
+		if (showAlerts && !confirm(initiator.name + ", ¿seguro que deseas realizar este intercambio con " + recipient.name + "?")) {
 			return false;
 		}
 
@@ -816,10 +816,10 @@ function Game() {
 
 			if (tradeObj.getProperty(i) === 1) {
 				square[i].owner = recipient.index;
-				addAlert(recipient.name + " received " + square[i].name + " from " + initiator.name + ".");
+				addAlert(recipient.name + " recibió " + square[i].name + " de " + initiator.name + ".");
 			} else if (tradeObj.getProperty(i) === -1) {
 				square[i].owner = initiator.index;
-				addAlert(initiator.name + " received " + square[i].name + " from " + recipient.name + ".");
+				addAlert(initiator.name + " recibió " + square[i].name + " de " + recipient.name + ".");
 			}
 
 		}
@@ -827,21 +827,21 @@ function Game() {
 		if (tradeObj.getCommunityChestJailCard() === 1) {
 			initiator.communityChestJailCard = false;
 			recipient.communityChestJailCard = true;
-			addAlert(recipient.name + ' received a "Get Out of Jail Free" card from ' + initiator.name + ".");
+			addAlert(recipient.name + ' recibió una tarjeta para salir de prisión gratis de ' + initiator.name + ".");
 		} else if (tradeObj.getCommunityChestJailCard() === -1) {
 			initiator.communityChestJailCard = true;
 			recipient.communityChestJailCard = false;
-			addAlert(initiator.name + ' received a "Get Out of Jail Free" card from ' + recipient.name + ".");
+			addAlert(initiator.name + ' recibió una tarjeta para salir de prisión gratis de ' + recipient.name + ".");
 		}
 
 		if (tradeObj.getChanceJailCard() === 1) {
 			initiator.chanceJailCard = false;
 			recipient.chanceJailCard = true;
-			addAlert(recipient.name + ' received a "Get Out of Jail Free" card from ' + initiator.name + ".");
+			addAlert(recipient.name + ' recibió una tarjeta para salir de prisión gratis de ' + initiator.name + ".");
 		} else if (tradeObj.getChanceJailCard() === -1) {
 			initiator.chanceJailCard = true;
 			recipient.chanceJailCard = false;
-			addAlert(initiator.name + ' received a "Get Out of Jail Free" card from ' + recipient.name + ".");
+			addAlert(initiator.name + ' recibió una tarjeta para salir de prisión gratis de ' + recipient.name + ".");
 		}
 
 		// Exchange money.
@@ -849,14 +849,14 @@ function Game() {
 			initiator.pay(money, recipient.index);
 			recipient.money += money;
 
-			addAlert(recipient.name + " received $" + money + " from " + initiator.name + ".");
+			addAlert(recipient.name + " recibió $" + money + " de " + initiator.name + ".");
 		} else if (money < 0) {
 			money = -money;
 
 			recipient.pay(money, initiator.index);
 			initiator.money += money;
 
-			addAlert(initiator.name + " received $" + money + " from " + recipient.name + ".");
+			addAlert(initiator.name + " recibió $" + money + " de " + recipient.name + ".");
 		}
 
 		updateOwned();
@@ -918,7 +918,7 @@ function Game() {
 			return false;
 		}
 
-		if (initiator.human && !confirm(initiator.name + ", are you sure you want to make this offer to " + recipient.name + "?")) {
+		if (initiator.human && !confirm(initiator.name + ", ¿seguro que quieres hacer esta oferta a " + recipient.name + "?")) {
 			return false;
 		}
 
@@ -933,19 +933,19 @@ function Game() {
 			$("#accepttradebutton").show();
 			$("#rejecttradebutton").show();
 
-			addAlert(initiator.name + " initiated a trade with " + recipient.name + ".");
-			popup("<p>" + initiator.name + " has proposed a trade with you, " + recipient.name + ". You may accept, reject, or modify the offer.</p>");
+			addAlert(initiator.name + " inició un intercambio con " + recipient.name + ".");
+			popup("<p>" + initiator.name + " te ha propuesto un intercambio, " + recipient.name + ". Puedes aceptar, rechazar o modificar la oferta.</p>");
 		} else {
 			var tradeResponse = recipient.AI.acceptTrade(tradeObj);
 
 			if (tradeResponse === true) {
-				popup("<p>" + recipient.name + " has accepted your offer.</p>");
+				popup("<p>" + recipient.name + " ha aceptado tu oferta.</p>");
 				this.acceptTrade(reversedTrade);
 			} else if (tradeResponse === false) {
-				popup("<p>" + recipient.name + " has declined your offer.</p>");
+				popup("<p>" + recipient.name + " ha rechazado tu oferta.</p>");
 				return;
 			} else if (tradeResponse instanceof Trade) {
-				popup("<p>" + recipient.name + " has proposed a counteroffer.</p>");
+				popup("<p>" + recipient.name + " ha propuesto una contraoferta.</p>");
 				writeTrade(tradeResponse);
 
 				$("#proposetradebutton, #canceltradebutton").hide();
@@ -1002,7 +1002,7 @@ function Game() {
 			// }
 			// document.getElementById("refresh").innerHTML += "<br><br><div><textarea type='text' style='width: 980px;' onclick='javascript:select();' />" + text + "</textarea></div>";
 
-			popup("<p>Congratulations, " + player[1].name + ", you have won the game.</p><div>");
+			popup("<p>¡Felicidades, " + player[1].name + ", has ganado la partida.</p><div>");
 
 		} else {
 			play();
@@ -1047,7 +1047,7 @@ function Game() {
 	};
 
 	this.resign = function() {
-		popup("<p>Are you sure you want to resign?</p>", game.bankruptcy, "Yes/No");
+		popup("<p>¿Estás seguro de que quieres rendirte?</p>", game.bankruptcy, "Yes/No");
 	};
 
 	this.bankruptcy = function() {
@@ -1107,8 +1107,8 @@ function Game() {
 		if (pcount === 2 || bankruptcyUnmortgageFee === 0 || p.creditor === 0) {
 			game.eliminatePlayer();
 		} else {
-			addAlert(pcredit.name + " paid $" + bankruptcyUnmortgageFee + " interest on the mortgaged properties received from " + p.name + ".");
-			popup("<p>" + pcredit.name + ", you must pay $" + bankruptcyUnmortgageFee + " interest on the mortgaged properties you received from " + p.name + ".</p>", function() {player[pcredit.index].pay(bankruptcyUnmortgageFee, 0); game.bankruptcyUnmortgage();});
+			addAlert(pcredit.name + " pagó $" + bankruptcyUnmortgageFee + " de interés por las propiedades hipotecadas recibidas de " + p.name + ".");
+			popup("<p>" + pcredit.name + ", debes pagar $" + bankruptcyUnmortgageFee + " de interés por las propiedades hipotecadas que recibiste de " + p.name + ".</p>", function() {player[pcredit.index].pay(bankruptcyUnmortgageFee, 0); game.bankruptcyUnmortgage();});
 		}
 	};
 
@@ -1936,7 +1936,7 @@ function chanceCommunityChest() {
 			communityChestCards.deck.splice(communityChestCards.index, 1);
 		}
 
-		popup("<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards[communityChestIndex].text + "</div>", function() {
+		popup("<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Caja Comunitaria:</div><div style='text-align: justify;'>" + communityChestCards[communityChestIndex].text + "</div>", function() {
 			communityChestAction(communityChestIndex);
 		});
 
@@ -1955,7 +1955,7 @@ function chanceCommunityChest() {
 			chanceCards.deck.splice(chanceCards.index, 1);
 		}
 
-		popup("<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards[chanceIndex].text + "</div>", function() {
+		popup("<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Suerte:</div><div style='text-align: justify;'>" + chanceCards[chanceIndex].text + "</div>", function() {
 			chanceAction(chanceIndex);
 		});
 
@@ -2067,7 +2067,7 @@ function payeachplayer(amount, cause) {
 		}
 	}
 
-	addAlert(p.name + " lost $" + total + " from " + cause + ".");
+	addAlert(p.name + " perdió $" + total + " por " + cause + ".");
 }
 
 function collectfromeachplayer(amount, cause) {
@@ -2089,7 +2089,7 @@ function collectfromeachplayer(amount, cause) {
 		}
 	}
 
-	addAlert(p.name + " received $" + total + " from " + cause + ".");
+	addAlert(p.name + " recibió $" + total + " por " + cause + ".");
 }
 
 function advance(destination, pass) {
@@ -2101,7 +2101,7 @@ function advance(destination, pass) {
 		} else {
 			p.position = pass;
 			p.money += 200;
-			addAlert(p.name + " collected a $200 salary for passing GO.");
+			addAlert(p.name + " cobró $200 por pasar por Inicio Algebraico.");
 		}
 	}
 	if (p.position < destination) {
@@ -2109,7 +2109,7 @@ function advance(destination, pass) {
 	} else {
 		p.position = destination;
 		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+		addAlert(p.name + " cobró $200 por pasar por Inicio Algebraico.");
 	}
 
 	land();
@@ -2124,8 +2124,8 @@ function advanceToNearestUtility() {
 		p.position = 28;
 	} else if (p.position >= 28) {
 		p.position = 12;
-		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+			p.money += 200;
+			addAlert(p.name + " cobró $200 por pasar por Inicio Algebraico.");
 	}
 
 	land(true);
@@ -2143,7 +2143,7 @@ function advanceToNearestRailroad() {
 	} else if (p.position >= 35) {
 		p.position = 5;
 		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+		addAlert(p.name + " cobró $200 por pasar por Inicio Algebraico.");
 	}
 
 	land(true);
@@ -2168,9 +2168,9 @@ function streetrepairs(houseprice, hotelprice) {
 
 		// If function was called by Community Chest.
 		if (houseprice === 40) {
-			addAlert(p.name + " lost $" + cost + " to Community Chest.");
+			addAlert(p.name + " perdió $" + cost + " por la Caja Comunitaria.");
 		} else {
-			addAlert(p.name + " lost $" + cost + " to Chance.");
+			addAlert(p.name + " perdió $" + cost + " por Suerte.");
 		}
 	}
 
@@ -2190,7 +2190,7 @@ function payfifty() {
 	p.position = 10;
 	p.pay(50, 0);
 
-	addAlert(p.name + " paid the $50 fine to get out of jail.");
+	addAlert(p.name + " pagó la multa de $50 para salir de prisión.");
 	updateMoney();
 	updatePosition();
 }
@@ -2233,7 +2233,7 @@ function useJailCard() {
 		}
 	}
 
-	addAlert(p.name + " used a \"Get Out of Jail Free\" card.");
+	addAlert(p.name + " usó una tarjeta para salir de prisión gratis.");
 	updateOwned();
 	updatePosition();
 }
@@ -2266,7 +2266,7 @@ function buyHouse(index) {
 
 			} else {
 				sq.house++;
-				addAlert(p.name + " placed a house on " + sq.name + ".");
+				addAlert(p.name + " colocó una casa en " + sq.name + ".");
 			}
 
 		} else {
@@ -2276,7 +2276,7 @@ function buyHouse(index) {
 			} else {
 				sq.house = 5;
 				sq.hotel = 1;
-				addAlert(p.name + " placed a hotel on " + sq.name + ".");
+				addAlert(p.name + " colocó un hotel en " + sq.name + ".");
 			}
 		}
 
@@ -2294,10 +2294,10 @@ function sellHouse(index) {
 	if (sq.hotel === 1) {
 		sq.hotel = 0;
 		sq.house = 4;
-		addAlert(p.name + " sold the hotel on " + sq.name + ".");
+				addAlert(p.name + " vendió el hotel en " + sq.name + ".");
 	} else {
 		sq.house--;
-		addAlert(p.name + " sold a house on " + sq.name + ".");
+		addAlert(p.name + " vendió una casa en " + sq.name + ".");
 	}
 
 	p.money += sq.houseprice * 0.5;
@@ -2357,7 +2357,7 @@ function showStats() {
 				write = true;
 				HTML += "<table>";
 			}
-			HTML += "<tr><td class='statscellcolor'></td><td class='statscellname'>Get Out of Jail Free Card</td></tr>";
+			HTML += "<tr><td class='statscellcolor'></td><td class='statscellname'>Tarjeta para salir de prisión gratis</td></tr>";
 
 		}
 		if (p.chanceJailCard) {
@@ -2365,7 +2365,7 @@ function showStats() {
 				write = true;
 				HTML += "<table>";
 			}
-			HTML += "<tr><td class='statscellcolor'></td><td class='statscellname'>Get Out of Jail Free Card</td></tr>";
+			HTML += "<tr><td class='statscellcolor'></td><td class='statscellname'>Tarjeta para salir de prisión gratis</td></tr>";
 
 		}
 
@@ -2461,7 +2461,7 @@ function buy() {
 		property.owner = turn;
 		property.purchaseApprovedTurn = null;
 		updateMoney();
-		addAlert(p.name + " bought " + property.name + " for " + property.pricetext + ".");
+		addAlert(p.name + " compró " + property.name + " por " + property.pricetext + ".");
 
 		updateOwned();
 		updateAlgebraDashboard();
@@ -2469,7 +2469,7 @@ function buy() {
 		$("#landed").hide();
 
 	} else {
-		popup("<p>" + p.name + ", you need $" + (property.price - p.money) + " more to buy " + property.name + ".</p>");
+		popup("<p>" + p.name + ", necesitas $" + (property.price - p.money) + " más para comprar " + property.name + ".</p>");
 	}
 }
 
@@ -3192,15 +3192,15 @@ window.onload = function() {
 
 		if (s.mortgage) {
 			if (player[s.owner].money < Math.round(s.price * 0.55)) {
-				popup("<p>You need $" + (Math.round(s.price * 0.55) - player[s.owner].money) + " more to unmortgage " + s.name + ".</p>");
+				popup("<p>Necesitas $" + (Math.round(s.price * 0.55) - player[s.owner].money) + " más para levantar la hipoteca de " + s.name + ".</p>");
 
 			} else {
-				popup("<p>" + player[s.owner].name + ", are you sure you want to unmortgage " + s.name + " for $" + Math.round(s.price * 0.55) + "?</p>", function() {
+				popup("<p>" + player[s.owner].name + ", ¿seguro que quieres levantar la hipoteca de " + s.name + " por $" + Math.round(s.price * 0.55) + "?</p>", function() {
 					unmortgage(checkedProperty);
 				}, "Yes/No");
 			}
 		} else {
-			popup("<p>" + player[s.owner].name + ", are you sure you want to mortgage " + s.name + " for $" + Math.round(s.price * 0.5) + "?</p>", function() {
+				popup("<p>" + player[s.owner].name + ", ¿seguro que quieres hipotecar " + s.name + " por $" + Math.round(s.price * 0.5) + "?</p>", function() {
 				mortgage(checkedProperty);
 			}, "Yes/No");
 		}
@@ -3216,10 +3216,10 @@ window.onload = function() {
 
 		if (p.money < s.houseprice) {
 			if (s.house === 4) {
-				popup("<p>You need $" + (s.houseprice - player[s.owner].money) + " more to buy a hotel for " + s.name + ".</p>");
+				popup("<p>Necesitas $" + (s.houseprice - player[s.owner].money) + " más para comprar un hotel para " + s.name + ".</p>");
 				return;
 			} else {
-				popup("<p>You need $" + (s.houseprice - player[s.owner].money) + " more to buy a house for " + s.name + ".</p>");
+				popup("<p>Necesitas $" + (s.houseprice - player[s.owner].money) + " más para comprar una casa para " + s.name + ".</p>");
 				return;
 			}
 		}
@@ -3233,10 +3233,10 @@ window.onload = function() {
 		}
 
 		if (s.house < 4 && houseSum >= 32) {
-			popup("<p>All 32 houses are owned. You must wait until one becomes available.</p>");
+			popup("<p>Las 32 casas están ocupadas. Debes esperar a que haya una disponible.</p>");
 			return;
 		} else if (s.house === 4 && hotelSum >= 12) {
-			popup("<p>All 12 hotels are owned. You must wait until one becomes available.</p>");
+			popup("<p>Los 12 hoteles están ocupados. Debes esperar a que haya uno disponible.</p>");
 			return;
 		}
 
